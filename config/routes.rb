@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+  devise_for :users, controllers: {
+    registrations: "public/registrations",
+    sessions: "public/sessions"
+  }
+
+  devise_for :admin, controllers: {
+    sessions: "admin/sessions"
+  }
+
   namespace :admin do
     get 'users/index'
     get 'users/show'
@@ -26,7 +36,6 @@ Rails.application.routes.draw do
   namespace :public do
     get 'homes/about'
   end
-  devise_for :admins
-  devise_for :users
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
