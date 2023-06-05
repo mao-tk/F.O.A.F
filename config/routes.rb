@@ -17,16 +17,16 @@ Rails.application.routes.draw do
     get 'mypage' => 'users#show'
     get 'users/confirm' => 'users#confirm'
     patch 'users/quit' => 'users#quit'
-    
+
     # indexはルートパス設定済み
     resources :posts, except: [:index] do
       resources :comments, only: %i[create update destroy]
       resource :bookmark, only: %i[create destroy]
     end
-    
+
     resources :folders, except: %i[edit new]
   end
-  
+
   namespace :admin do
     root 'users#index'
     resource :areas, only: %i[index create edit update]
