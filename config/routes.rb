@@ -9,32 +9,28 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  scope module: :public do
+
+    root 'posts#index'
+    get 'about' => 'homes#about'
+
+    get 'mypage' => 'users#show'
+    get 'users/confirm' => 'users#confirm'
+    patch 'users/quit' => 'users#quit'
+    
+    # indexはルートパス設定済み
+    resources :posts, except: [:index] do
+      resources :comments, only: %i[create update destroy]
+      resource :bookmark, only: %i[create destroy]
+    end
+    
+    resources :folders, except: %i[edit new]
+  end
+  
   namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
-  namespace :admin do
-    get 'areas/index'
-    get 'areas/edit'
-  end
-  namespace :public do
-    get 'folders/index'
-    get 'folders/show'
-  end
-  namespace :public do
-    get 'posts/new'
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-  end
-  namespace :public do
-    get 'users/show'
-    get 'users/confirm'
-    get 'users/quit'
-  end
-  namespace :public do
-    get 'homes/about'
+    root 'users#index'
+    resource :areas, only: %i[index create edit update]
+    resources :users, only: %i[index show edit update]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
