@@ -1,2 +1,16 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="row">
+  <!--ユーザーinfo-->
+    <%= image_tag current_user.get_profile_image(100,100), class: "rounded-circle border" %>
+    <h1 class="d-flex align-items-center ml-4"><%= current_user.name %></h1>
+
+  <!--新着投稿-->
+  <div>
+    <%= render 'public/posts/index', posts: @posts %>
+  </div>
+
+  <!--ブックマークフォルダ-->
+  <div>
+
+  </div>
+
+</div>
