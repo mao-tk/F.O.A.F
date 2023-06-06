@@ -1,90 +1,58 @@
-  <!--<div class="d-flex flex-column p-3" style="width: 280px;">-->
-  <!--  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
-  <!--    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>-->
-  <!--    <span>Logo</span>-->
-  <!--  </a>-->
-  <!--  <hr>-->
-  <!--  <ul class="nav nav-pills flex-column mb-auto">-->
-  <!--    <li class="nav-item">-->
-  <!--      <a href="#" class="nav-link active" aria-current="page">-->
-  <!--        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>-->
-  <!--        Home-->
-  <!--      </a>-->
-  <!--    </li>-->
-  <!--    <li>-->
-  <!--      <a href="#" class="nav-link link-dark">-->
-  <!--        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>-->
-  <!--        Dashboard-->
-  <!--      </a>-->
-  <!--    </li>-->
-  <!--    <li>-->
-  <!--      <a href="#" class="nav-link link-dark">-->
-  <!--        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>-->
-  <!--        Orders-->
-  <!--      </a>-->
-  <!--    </li>-->
-  <!--    <li>-->
-  <!--      <a href="#" class="nav-link link-dark">-->
-  <!--        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>-->
-  <!--        Products-->
-  <!--      </a>-->
-  <!--    </li>-->
-  <!--    <li>-->
-  <!--      <a href="#" class="nav-link link-dark">-->
-  <!--        <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>-->
-  <!--        Customers-->
-  <!--      </a>-->
-  <!--    </li>-->
-  <!--  </ul>-->
-  <!--  <hr>-->
-  <!--  <div class="dropdown">-->
-  <!--    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
-  <!--      <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
-  <!--      <strong>mdo</strong>-->
-  <!--    </a>-->
-  <!--    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">-->
-  <!--      <li><a class="dropdown-item" href="#">New project...</a></li>-->
-  <!--      <li><a class="dropdown-item" href="#">Settings</a></li>-->
-  <!--      <li><a class="dropdown-item" href="#">Profile</a></li>-->
-  <!--      <li><hr class="dropdown-divider"></li>-->
-  <!--      <li><a class="dropdown-item" href="#">Sign out</a></li>-->
-  <!--    </ul>-->
-  <!--  </div>-->
-  <!--</div>-->
 
-<nav class ="navbar navbar-light bg-light">
+
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height: 100vh;">
+
   <%= link_to root_path, class:"navbar-brand p-3" do %>
-    <%= image_tag "test.png", size: "150x100", class: "logo" %>
+    <%= image_tag "test.png", size: "150x150", class: "logo" %>
   <% end %>
-  <div class="container-fluid">
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <%= link_to root_path do %>
-          <i class="fas fa-home"></i> HOME
+
+
+  <ul class="nav nav-pills flex-column mb-4">
+    <li class="nav-item">
+      <%= link_to root_path do %>
+        <i class="fas fa-home"></i> HOME
+      <% end %>
+    </li>
+    <li>
+      <%= link_to about_path do %>
+        <i class="fas fa-question-circle"></i> GUIDE
+      <% end %>
+    </li>
+    <li>
+      <%= link_to mypage_path do %>
+        <i class="fas fa-id-card"></i> MY PAGE
+      <% end %>
+    </li>
+    <li class="nav-item btn signbtn px-5">
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fas fa-sign-out-alt"></i> Log out
         <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to about_path do %>
-          <i class="fas fa-question-circle"></i> GUIDE
+      <% else %>
+        <%= link_to new_user_session_path do %>
+          <i class="fas fa-sign-in-alt"></i> Log in
         <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to mypage_path do %>
-          <i class="fas fa-id-card"></i> MY PAGE
-        <% end %>
-      </li>
-      <li class="nav-item btn btn-success px-5">
-        <% if user_signed_in? %>
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fas fa-sign-out-alt"></i> Sign out
-          <% end %>
-        <% else %>
-          <%= link_to new_user_session_path do %>
-            <i class="fas fa-sign-in-alt"></i> Sign in
-          <% end %>
-        <% end %>
-      </li>
-    </ul>
+      <% end %>
+    </li>
+  </ul>
+
+  <div class="container-fluid py-4 border-top border-bottom">
+    <%= link_to new_user_registration_path, class: "btn btn-block signUpBtn" do %>
+      <i class="fas fa-user-plus"></i> 新規登録はこちら
+    <% end %>
   </div>
 
-</nav>
+  <div class="container-fluid mt-4">
+    <span>公式アカウント</span>
+    <div class="acountBtn text-center mt-3">
+      <%= link_to "#", class: "mr-3" do %>
+        <i class="fab fa-twitter fa-2x"></i>
+      <% end %>
+      <%= link_to "#" do %>
+        <i class="fab fa-instagram fa-2x"></i>
+      <% end %>
+    </div>
+  </div>
+
+
+</div>
