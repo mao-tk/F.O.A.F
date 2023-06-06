@@ -1,51 +1,44 @@
-<div class="conatiner">
-  <div class="row">
-    <div class="col-md-3 mx-auto mt-5">
+<div class="card mt-5">
+  <div class="card-body p-5">
+    <h6 class="text-center">新規登録</h5>
 
-      <div class="card">
-        <div class="card-body p-5">
-          <h6 class="text-center">新規登録</h5>
+    <%= form_with model: @user, url: user_registration_path do |f| %>
 
-          <%= form_with model: @user, url: user_registration_path do |f| %>
-
-            <!--プロフィール画像・プレビュー-->
-            <div class="form-group userProfileImg">
-              <%= f.label :profile_image, "プロフィール画像",for: "file_photo", class: "userProfileImg_description" %>
-              <i class="fas fa-camera fa-3x"></i>
-              <%= f.file_field :profile_image, accept: "image/*", id: "file_photo" %>
-            </div>
-            <div class="userImgPreview" id="userImgPreview">
-              <img id="thumbnail" class="userImgPreview_content" accept="image/*" src="">
-              <p class="userImgPreview_text">画像をアップロード済み</p>
-            </div>
-
-            <!--入力フォーム-->
-            <div class="form-group">
-              <%= f.label :name, "ユーザー名" %>
-              <%= f.text_field :name, autofocus: true, placeholder: "sample", class: "form-control" %>
-            </div>
-            <div class="form-group">
-              <%= f.label :email %>
-              <%= f.email_field :email, autocomplete: "email", placeholder: "sample@sample.com", class: "form-control" %>
-            </div>
-            <div class="form-group">
-              <%= f.label :password, "パスワード" %>
-              <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control" %>
-            </div>
-            <div class="form-group">
-              <%= f.label :password_confirmation, "パスワード(確認用)" %>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "再度パスワードを入力してください", class: "form-control" %>
-            </div>
-            <div class="text-center">
-              <%= f.submit "新規登録", class: "btn signUpBtn " %>
-            </div>
-          <% end %>
-        </div>
+      <!--プロフィール画像・プレビュー-->
+      <div class="form-group userProfileImg">
+        <%= f.label :profile_image, "プロフィール画像",for: "file_photo", class: "userProfileImg_description" %>
+        <i class="fas fa-camera fa-3x"></i>
+        <%= f.file_field :profile_image, accept: "image/*", id: "file_photo" %>
+      </div>
+      <div class="userImgPreview" id="userImgPreview">
+        <img id="thumbnail" class="userImgPreview_content" accept="image/*" src="">
+        <p class="userImgPreview_text">画像をアップロード済み</p>
       </div>
 
-    </div>
+      <!--入力フォーム-->
+      <div class="form-group">
+        <%= f.label :name, "ユーザー名" %>
+        <%= f.text_field :name, autofocus: true, placeholder: "sample", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autocomplete: "email", placeholder: "sample@sample.com", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, "パスワード(確認用)" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "再度パスワードを入力してください", class: "form-control" %>
+      </div>
+      <div class="text-center">
+        <%= f.submit "新規登録", class: "btn signUpBtn " %>
+      </div>
+    <% end %>
   </div>
 </div>
+
 
 <script>
   $(document).on("change", "#file_photo", function(e) {
