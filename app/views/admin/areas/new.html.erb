@@ -1,0 +1,4 @@
+<%= form_with model: [:admin, @area], url: admin_areas_path do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit "登録" %>
+<% end %>

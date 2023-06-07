@@ -1,2 +1,13 @@
 <h1>Public::Posts#index</h1>
 <p>Find me in app/views/public/posts/index.html.erb</p>
+
+<!--タグリスト-->
+<% @tag_list.each do |list|%>
+  <%=list.name %>
+  <%="(#{list.posts.count})" %>
+<% end %>
+
+<!--投稿一覧画面で投稿に紐づくタグを表示-->
+<% @posts.each do |post| %>
+  <i class="fas fa-tag"><%= post.tags.map(&:name).join(', ') %></i>
+<% end %>
