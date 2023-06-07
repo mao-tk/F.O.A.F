@@ -1,0 +1,21 @@
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @posts.each do |post| %>
+  <div class="col mb-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title" style="height: 10px;"><%= post.title.truncate(10) %></h5>
+        <p class="card-text" style="height: 90px;"><%= post.body.truncate(40) %></p>
+        <div class="card-text">
+          <hr>
+          <%= image_tag post.user.get_profile_image(50,50), class: "rounded-circle border" %>
+          <%= post.user.name %>
+          <div class="text-bottom text-right">
+            <i class="far fa-folder"></i>
+            <i class="far fa-comment"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
