@@ -15,7 +15,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.order('id DESC')
     # @tag_list = Tag.all
   end
 
