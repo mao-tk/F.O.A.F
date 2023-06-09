@@ -15,18 +15,23 @@
     <div class="container">
       <div class="row">
         <div class="col-3">
-          <div class="sidebar_fixed">
-            <%= render "layouts/sidemenu" %>
-          </div>
+          <%= render "layouts/sidemenu" %>
         </div>
-        <div class="col-8 offset-1">
+        <div class="col-7 offset-1">
           <div class="input-group rounded mt-3">
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
             <span class="input-group-text border-0" id="search-addon">
               <i class="fas fa-search"></i>
             </span>
           </div>
-          <%= yield %>
+          <div class="mt-5">
+            <%= yield %>
+          </div>
+        </div>
+        <div class="col-1 post">
+            <%= link_to new_post_path, class: "btn postBtn" do %>
+              <i class="fas fa-pen fa-4x"></i>
+            <% end %>
         </div>
       </div>
     </div>

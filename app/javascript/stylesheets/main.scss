@@ -14,3 +14,20 @@ li {
     color: #fff;
   }
 }
+
+.post {
+  position: relative;
+}
+.postBtn {
+  position: fixed;
+  bottom: 100px;
+  right: 200px;
+  background: #FFF;
+  border: solid 1px #000;
+  padding: 20px;
+  color: #000;
+  border-radius: 50%;
+  &:hover {
+    color: #000;
+  }
+}

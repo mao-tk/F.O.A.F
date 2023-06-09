@@ -1,9 +1,9 @@
 
 
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height: 100vh;">
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light position-fixed" style="width: 280px; height: 100vh;">
 
   <%= link_to root_path, class:"navbar-brand p-3" do %>
-    <%= image_tag "test.png", size: "150x150", class: "logo" %>
+    <%= image_tag "logo.png", size: "150x150", class: "logo" %>
   <% end %>
 
 
@@ -18,11 +18,13 @@
         <i class="fas fa-question-circle"></i> GUIDE
       <% end %>
     </li>
-    <li>
-      <%= link_to mypage_path do %>
-        <i class="fas fa-id-card"></i> MY PAGE
-      <% end %>
-    </li>
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to user_path(current_user) do %>
+          <i class="fas fa-id-card"></i> MY PAGE
+        <% end %>
+      </li>
+    <% end %>
     <li class="nav-item btn signbtn px-5">
       <% if user_signed_in? %>
         <%= link_to destroy_user_session_path, method: :delete do %>
