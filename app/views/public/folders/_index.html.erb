@@ -1,0 +1,12 @@
+<div class="row row-cols-1 row-cols-md-5 g-4">
+  <% folders.each do |folder| %>
+  <div class="col">
+    <div class="card border-0">
+      <%= link_to folder do %>
+        <%= image_tag "folder.png", class: "card-img-top" %>
+        <p class="text-center"><%= folder.name %></p>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
