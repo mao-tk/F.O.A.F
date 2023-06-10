@@ -4,6 +4,7 @@ class CreateFolders < ActiveRecord::Migration[6.1]
 
       t.integer :user_id
       t.integer :bookmark_id
+      t.string :name
 
       t.timestamps
     end

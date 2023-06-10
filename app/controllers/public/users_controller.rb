@@ -2,6 +2,9 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.order('id DESC').limit(3)
+
+    @folder = Folder.new
+    @folders = Folder.all
   end
 
   def posts
