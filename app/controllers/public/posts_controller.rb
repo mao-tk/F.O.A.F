@@ -20,6 +20,9 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    @folders = current_user.folders
+    @post = Post.find(params[:id])
+    @post_tags = @post.tags
   end
 
   def edit

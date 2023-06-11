@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 2023_06_04_015538) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "post_id"
+    t.integer "user_id"
+    t.integer "folder_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,7 +76,6 @@ ActiveRecord::Schema.define(version: 2023_06_04_015538) do
 
   create_table "folders", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "bookmark_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
