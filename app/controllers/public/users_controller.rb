@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
     @posts = @user.posts.order('id DESC').limit(3)
 
     @folder = Folder.new
-    @folders = Folder.all
+    @folders = @user.folders
   end
 
   def posts
