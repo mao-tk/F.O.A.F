@@ -17,4 +17,5 @@ class Public::UsersController < ApplicationController
 
   def quit
   end
+
 end
