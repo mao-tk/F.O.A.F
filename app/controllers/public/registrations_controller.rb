@@ -62,10 +62,15 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  def after_update_path_for(resource)
+    user_path(current_user)
+  end
+
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :profile_image])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :profile_image, :encrypted_password])
   end
 
   def ensure_normal_user
