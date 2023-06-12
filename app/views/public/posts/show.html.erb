@@ -9,7 +9,6 @@
         </div>
         <div class="col align-self-end text-right">
           <button type="button" class="btn border rounded-circle ml-3" data-toggle="modal" data-target="#bookmarkModal" data-whatever="@folder"><i class="fas fa-bookmark"></i></button><br>
-          <!--<i class="far fa-bookmark"></i><br>-->
           <%= @post.created_at %>
         </div>
         </div>
@@ -36,28 +35,18 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="bookmarkModalLabel">ブックマークを追加</h5>
+            <h5 class="modal-title" id="bookmarkModalLabel">ブックマークへ追加</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
           <div class="modal-body">
+            
             <% @folders.each do |folder| %>
-
-
-                <p>
-                  <%= link_to post_bookmark_path(@post,:folder_id=>folder.id), method: :delete do %>
-                    <i class="far fa-check-square"></i><%= folder.name %><br>
-                  <% end %>
-                </p>
-
-                <p>
-                  <%= link_to post_bookmark_path(@post,:folder_id=>folder.id), method: :post do %>
-                    <i class="far fa-square"></i><%= folder.name %><br>
-                  <% end %>
-                </p>
-
-           <% end 
+              <%= link_to post_bookmark_path(@post,:folder_id=>folder.id), method: :post do %>
+                <i class="far fa-square"></i><%= folder.name %><br>
+              <% end %>
+            <% end %>
 
           </div>
         </div>
