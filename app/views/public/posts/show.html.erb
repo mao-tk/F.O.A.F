@@ -40,7 +40,8 @@
                     <div class="card-text">
                       <div id="js-comment-<%= comment.id %>">
                         <%= simple_format comment.content, id: "js-comment-label-"+(comment.id.to_s) %>
-                        <textarea style="display: none;" id="js-textarea-comment-<%= comment.id %>" class="form-control"><%= comment.content %></textarea>
+                        <p id="js-comment-post-error-<%= comment.id %>" class="text-danger"></p>
+                        <textarea style="display: none;" id="js-textarea-comment-<%= comment.id %>" class="form-control comment-post-error"><%= comment.content %></textarea>
                         <div id="js-comment-button-<%= comment.id %>" style="display: none;">
                           <button data-cancel-id=<%= comment.id %> type="button" class="btn btn-sm btn-light comment-cancel-button">キャンセル</button>
                           <button data-update-id=<%= comment.id%> type="submit" class="btn btn-sm btn-success comment-update-button">更新</button>
@@ -146,6 +147,20 @@ $(function () {
           content: body
         }
       }
+    }).done(function (data) {
+        const commentLabelArea = $('#js-comment-label-' + commentId);
+        const commentTextArea = $('#js-textarea-comment-' + commentId);
+        const commentButton = $('#js-comment-button-' + commentId);
+        const commentError = $('#js-comment-post-error-' + commentId);
+
+        commentLabelArea.show();
+        commentLabelArea.text(data.content);
+        commentTextArea.hide();
+        commentButton.hide();
+        commentError.hide();
+      }).fail(function () {
+      const commentError = $('#js-comment-post-error-' + commentId);
+      commentError.text('コメントを入力してください');
     })
   });
 });

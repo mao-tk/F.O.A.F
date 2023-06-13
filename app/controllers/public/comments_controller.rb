@@ -10,11 +10,8 @@ class Public::CommentsController < ApplicationController
 
   def update
     @comment = current_user.comments.find(params[:id])
-    if @comment.update(comment_params) # 'コメント'を受け取る
-      redirect_to request.referer
-    else
-      render json: {comment: @comment}
-    end
+    @comment.update!(comment_params)
+    render json: @comment
   end
 
   def destroy
