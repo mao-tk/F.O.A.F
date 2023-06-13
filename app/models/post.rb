@@ -39,4 +39,9 @@ class Post < ApplicationRecord
     bookmarks.exists?(user_id: user.id)
   end
 
+  def self.search(search)
+      return all unless search
+      where(['title LIKE ?', "%#{search}%"]).or(where('body LIKE?', "%#{search}%"))
+  end
+
 end
