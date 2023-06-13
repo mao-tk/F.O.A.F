@@ -15,7 +15,13 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.order('id DESC').page(params[:page]).per(9)
+    if params[:search]
+      @keyword = params[:search]
+      @posts_all = Post.search(@keyword)
+      @posts = @posts_all.page(params[:page]).per(9)
+    else
+      @posts = Post.order('id DESC').page(params[:page]).per(9)
+    end
 
   end
 

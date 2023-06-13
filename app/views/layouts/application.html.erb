@@ -18,11 +18,10 @@
           <%= render "layouts/sidemenu" %>
         </div>
         <div class="col-7 offset-1">
-          <div class="input-group rounded mt-3">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <span class="input-group-text border-0" id="search-addon">
-              <i class="fas fa-search"></i>
-            </span>
+          <div class="form-group mt-3">
+            <%= form_with url: posts_path, method: :get, local: true, class: "" do |f| %>
+              <%= f.text_field :search, placeholder: "Search", class: "form-control"%>
+            <% end %>
           </div>
           <div class="mt-5">
             <%= notice %>
