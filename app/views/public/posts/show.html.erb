@@ -30,19 +30,21 @@
     <table class="table ">
       <% @post.comments.each do |comment| %>
         <tr>
-          <td width="10%"><%= image_tag comment.user.get_profile_image(50,50), class: "rounded-circle border" %></td>
-          <td width="10%"><%= comment.user.name %></td>
-          <td width="80%">
+          <td width="10%">
+            <%= image_tag comment.user.get_profile_image(50,50), class: "rounded-circle border" %><br>
+            <%= comment.user.name %>
+          </td>
+          <td width="90%">
             <div class="card">
               <div class="card-body">
                 <div class="card-text">
                   <div id="js-comment-<%= comment.id %>">
                     <%= simple_format comment.content, id: "js-comment-label-"+(comment.id.to_s) %>
-                    <p id="js-comment-post-error-<%= comment.id %>" class="text-danger"></p>
+                    <%= simple_format "", id: "js-comment-post-error-"+(comment.id.to_s), class: "text-danger" %>
                     <textarea style="display: none;" id="js-textarea-comment-<%= comment.id %>" class="form-control comment-post-error"><%= comment.content %></textarea>
                     <div id="js-comment-button-<%= comment.id %>" style="display: none;">
                       <button data-cancel-id=<%= comment.id %> type="button" class="btn btn-sm btn-light comment-cancel-button">キャンセル</button>
-                      <button data-update-id=<%= comment.id%> type="submit" class="btn btn-sm btn-success comment-update-button">更新</button>
+                      <button data-update-id=<%= comment.id%> type="submit" class="btn btn-sm btn-info comment-update-button">更新</button>
                     </div>
                   </div>
                 </div>
@@ -85,9 +87,16 @@
       <div class="modal-body">
 
         <% @folders.each do |folder| %>
-          <%= link_to post_bookmark_path(@post,:folder_id=>folder.id), method: :post do %>
-            <i class="far fa-square"></i><%= folder.name %><br>
-          <% end %>
+
+            <%= link_to post_bookmark_path(@post,:folder_id=>folder.id), method: :post, class: "text-dark" do %>
+              <i class="fas fa-folder-plus"></i><%= folder.name %><br>
+            <% end %>
+
+
+            <%= link_to post_bookmark_path(@post,:folder_id=>folder.id), method: :delete, class: "text-dark" do %>
+              <i class="fas fa-folder-minus"></i><%= folder.name %><br>
+            <% end %>
+
         <% end %>
 
       </div>
@@ -97,6 +106,7 @@
 
 
 <script>
+// コメント編集エリア表示
   $(function () {
     $(document).on("click", ".js-edit-comment-button", function () {
       const commentId = $(this).data('comment-id');
@@ -110,26 +120,29 @@
     });
   });
 
+// コメント編集エリア非表示
   $(function () {
     $(document).on("click", ".comment-cancel-button", function () {
       const commentId = $(this).data('cancel-id');
       const commentLabelArea = $('#js-comment-label-' + commentId);
       const commentTextArea = $('#js-textarea-comment-' + commentId);
       const commentButton = $('#js-comment-button-' + commentId);
+      const commentError = $('#js-comment-post-error-' + commentId);
 
       commentLabelArea.show();
       commentTextArea.hide();
       commentButton.hide();
+      commentError.hide();
     });
   });
 
+// コメント更新
   $(function () {
     $(document).on("click", ".comment-update-button", function () {
       const commentId = $(this).data('update-id');
       const textField = $('#js-textarea-comment-' + commentId);
       const body = textField.val();
       console.log(body);
-
 
       $.ajax({
         type: 'PATCH',
