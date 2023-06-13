@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="row mt-3">
-        <table class="table">
+        <table class="table ">
           <% @post.comments.each do |comment| %>
             <tr>
               <td width="10%"><%= image_tag comment.user.get_profile_image(50,50), class: "rounded-circle border" %></td>
@@ -35,7 +35,30 @@
               <td width="80%">
                 <div class="card">
                   <div class="card-body">
-                    <p class="card-text"><%= simple_format(comment.content) %></p>
+
+
+                    <div class="card-text">
+                      <div id="js-comment-<%= comment.id %>">
+                        <%= simple_format comment.content, id: "js-comment-label-"+(comment.id.to_s) %>
+                        <textarea style="display: none;" id="js-textarea-comment-<%= comment.id %>" class="form-control"><%= comment.content %></textarea>
+                        <div id="js-comment-button-<%= comment.id %>" style="display: none;">
+                          <button data-cancel-id=<%= comment.id %> type="button" class="btn btn-sm btn-light comment-cancel-button">キャンセル</button>
+                          <button data-update-id=<%= comment.id%> type="submit" class="btn btn-sm btn-success comment-update-button">更新</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <% if comment.user == current_user %>
+                        <span data-comment-id=<%= comment.id %> class="js-edit-comment-button">
+                          <i class="fas fa-edit"></i>
+                        </span>
+                        <%= link_to post_comment_path(comment.post, comment), method: :delete, data: {confirm: "削除しますか？"} do %>
+                          <i class="fas fa-trash text-dark"></i>
+                        <% end %>
+                      <% end %>
+                    </div>
+
+
                   </div>
                 </div>
               </td>
@@ -48,7 +71,7 @@
       <%= f.text_area :content, rows: '3', placeholder: "コメントをここに", class: "form-control" %>
       <%= f.submit "送信", class: "btn border" %>
     <% end %>
-</div>
+  </div>
 </div>
 
 
@@ -78,3 +101,54 @@
         </div>
       </div>
     </div>
+
+
+<script>
+$(function () {
+  $(document).on("click", ".js-edit-comment-button", function () {
+    const commentId = $(this).data('comment-id');
+    const commentLabelArea = $('#js-comment-label-' + commentId);
+    const commentTextArea = $('#js-textarea-comment-' + commentId);
+    const commentButton = $('#js-comment-button-' + commentId);
+
+    commentLabelArea.hide();
+    commentTextArea.show();
+    commentButton.show();
+  });
+});
+
+$(function () {
+  $(document).on("click", ".comment-cancel-button", function () {
+    const commentId = $(this).data('cancel-id');
+    const commentLabelArea = $('#js-comment-label-' + commentId);
+    const commentTextArea = $('#js-textarea-comment-' + commentId);
+    const commentButton = $('#js-comment-button-' + commentId);
+
+    commentLabelArea.show();
+    commentTextArea.hide();
+    commentButton.hide();
+  });
+});
+
+$(function () {
+  $(document).on("click", ".comment-update-button", function () {
+    const commentId = $(this).data('update-id');
+    const textField = $('#js-textarea-comment-' + commentId);
+    const body = textField.val();
+    console.log(body);
+
+
+    $.ajax({
+      type: 'PATCH',
+      url: 'posts/comments/' + commentId,
+      data: {
+        comment: {
+          content: body
+        }
+      }
+    })
+  });
+});
+
+
+</script>

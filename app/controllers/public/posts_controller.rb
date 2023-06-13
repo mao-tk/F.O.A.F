@@ -22,7 +22,7 @@ class Public::PostsController < ApplicationController
     @folders = current_user.folders
     @post = Post.find(params[:id])
     @post_tags = @post.tags
-    
+
     @comment = Comment.new
   end
 
