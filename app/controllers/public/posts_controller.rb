@@ -16,13 +16,14 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.order('id DESC')
-    # @tag_list = Tag.all
   end
 
   def show
     @folders = current_user.folders
     @post = Post.find(params[:id])
     @post_tags = @post.tags
+    
+    @comment = Comment.new
   end
 
   def edit
