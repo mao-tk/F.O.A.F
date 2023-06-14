@@ -32,6 +32,7 @@ class Public::PostsController < ApplicationController
     @post_tags = @post.tags
 
     @comment = Comment.new
+    @bookmark = Bookmark.new
   end
 
   def edit
