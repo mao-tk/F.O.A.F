@@ -7,6 +7,7 @@ class Public::BookmarksController < ApplicationController
     redirect_to post_path(post)
   end
 
+
   def destroy
     folder = Folder.find(params[:folder_id])
     post = Post.find(params[:post_id])

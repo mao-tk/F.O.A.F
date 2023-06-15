@@ -86,14 +86,18 @@
       </div>
       <div class="modal-body">
 
-<div id="bookmark-form">
-  <% current_user.folders.each do |folder| %>
-    <div>
-      <input type="checkbox" name="folder_ids[]" value="<%= folder.id %>" id="folder_<%= folder.id %>" data-folder-id="<%= folder.id %>" class="bookmark-checkbox">
-      <label for="folder_<%= folder.id %>"><%= folder.name %></label>
-    </div>
+
+<% @folders.each do |folder| %>
+  <% if @bookmarked_folders.include?(folder.id) %>
+    <%= link_to post_bookmark_path(@post, folder_id: folder.id), method: :delete, class: "text-dark" do %>
+      <i class="far fa-check-square"></i><%= folder.name %><br>
+    <% end %>
+  <% else %>
+    <%= link_to post_bookmark_path(@post, folder_id: folder.id), method: :post, class: "text-dark" do %>
+      <i class="far fa-square"></i><%= folder.name %><br>
+    <% end %>
   <% end %>
-</div>
+<% end %>
 
 
 

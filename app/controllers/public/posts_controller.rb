@@ -30,9 +30,8 @@ class Public::PostsController < ApplicationController
     @folder = Folder.find(params[:id])
     @post = Post.find(params[:id])
     @post_tags = @post.tags
-
     @comment = Comment.new
-    @bookmark = Bookmark.new
+    @bookmarked_folders = current_user.bookmarks.pluck(:folder_id)
   end
 
   def edit
