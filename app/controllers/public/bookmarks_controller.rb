@@ -1,4 +1,6 @@
 class Public::BookmarksController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     folder = Folder.find(params[:folder_id])
     post = Post.find(params[:post_id])
