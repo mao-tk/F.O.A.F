@@ -61,6 +61,13 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  def create
+    super do |resource|
+      if resource.persisted?
+        create_default_folder(resource)
+      end
+    end
+  end
 
   def after_update_path_for(resource)
     user_path(current_user)
@@ -77,6 +84,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
     if resource.email == 'guest@example.com'
       redirect_to root_path
     end
+  end
+
+  private
+
+  def create_default_folder(user)
+      user.folders.create(name: 'マイリスト')
   end
 
 end

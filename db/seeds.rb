@@ -48,4 +48,7 @@ User.all.each do |user|
     title: 'タイトル',
     body: 'テキストテキストテキストテキスト'
   )
+  user.folders.create!(
+    name: 'マイリスト'
+  )
 end

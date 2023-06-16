@@ -10,8 +10,12 @@ class Public::CommentsController < ApplicationController
 
   def update
     @comment = current_user.comments.find(params[:id])
-    @comment.update!(comment_params)
-    render json: @comment
+    if @comment.update!(comment_params)
+      render json: @comment
+    else
+      head :bad_request
+    end
+
   end
 
   def destroy

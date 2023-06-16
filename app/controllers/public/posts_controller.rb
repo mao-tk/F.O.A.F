@@ -27,10 +27,11 @@ class Public::PostsController < ApplicationController
 
   def show
     @folders = current_user.folders
+    @folder = Folder.find(params[:id])
     @post = Post.find(params[:id])
     @post_tags = @post.tags
-
     @comment = Comment.new
+    @bookmarked_folders = current_user.bookmarks.pluck(:folder_id)
   end
 
   def edit

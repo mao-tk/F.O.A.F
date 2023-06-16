@@ -5,7 +5,7 @@
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title" style="height: 10px;"><%= post.title.truncate(8) %></h5>
-          <p class="card-text" style="height: 90px;"><%= post.body.truncate(40) %></p>
+          <p class="card-text" style="height: 90px;"><%= post.body.truncate(20) %></p>
           <div class="card-text">
             <hr>
             <%= image_tag post.user.get_profile_image(50,50), class: "rounded-circle border" %>
