@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
 
     # indexはルートパス設定済み
-    resources :posts, only: %i[new create index show] do
+    resources :posts do
       resources :comments, only: %i[create update destroy]
       resource :bookmark, only: %i[create destroy]
     end
@@ -38,6 +38,10 @@ Rails.application.routes.draw do
     root 'users#index'
     resource :areas, only: %i[new index create edit update]
     resources :users, only: %i[index show edit update]
+    
+    resources :posts, only: %i[index show] do
+      resources :comments, only: %i[destroy]
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

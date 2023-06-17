@@ -1,4 +1,6 @@
 class Public::FoldersController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @folder = current_user.folders.new(folder_params)
     @folder.save!
