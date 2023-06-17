@@ -6,9 +6,32 @@
         <div class="col align-self-start">
           <%= image_tag @post.user.get_profile_image(50,50), class: "rounded-circle border" %>
           <span class="h5 ml-3"><%= @post.user.name %></span>
+          <% if @post.user == current_user %>
+            <%= link_to edit_post_path(@post) do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+          <% end %>
         </div>
         <div class="col align-self-end text-right">
           <button type="button" class="btn border rounded-circle ml-3" data-toggle="modal" data-target="#bookmarkModal" data-whatever="@folder"><i class="fas fa-bookmark"></i></button><br>
+          <!--ブックマーク追加用モーダル-->
+          <div class="modal fade" id="bookmarkModal" tabindex="-1" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="bookmarkModalLabel">ブックマークへ追加</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body text-left">
+                  <div id="bookmark-btn-<%= @post.id %>">
+                    <%= render 'public/bookmarks/bookmark', folders: @folders, bookmarked_folders: @bookmarked_folders, post: @post %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <%= @post.created_at %>
         </div>
         </div>
@@ -74,32 +97,6 @@
 </div>
 
 
-<!--ブックマーク追加用モーダル-->
-<div class="modal fade" id="bookmarkModal" tabindex="-1" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="bookmarkModalLabel">ブックマークへ追加</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <% @folders.each do |folder| %>
-          <% if @bookmarked_folders.include?(folder.id) %>
-            <%= link_to post_bookmark_path(@post, folder_id: folder.id), method: :delete, class: "text-dark" do %>
-              <i class="far fa-check-square"></i><%= folder.name %><br>
-            <% end %>
-          <% else %>
-            <%= link_to post_bookmark_path(@post, folder_id: folder.id), method: :post, class: "text-dark" do %>
-              <i class="far fa-square"></i><%= folder.name %><br>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <script>

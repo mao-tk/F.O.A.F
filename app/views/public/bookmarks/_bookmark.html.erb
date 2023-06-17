@@ -1,0 +1,11 @@
+        <% folders.each do |folder| %>
+          <% if bookmarked_folders.where(folder_id: folder.id).exists? %>
+            <%= link_to post_bookmark_path(post, folder_id: folder.id), method: :delete, remote: true, data: {"turbolinks" => false}, class: "text-dark" do %>
+              <i class="far fa-check-square"></i><%= folder.name %><br>
+            <% end %>
+          <% else %>
+            <%= link_to post_bookmark_path(post, folder_id: folder.id), method: :post, remote: true, data: {"turbolinks" => false}, class: "text-dark" do %>
+              <i class="far fa-square"></i><%= folder.name %><br>
+            <% end %>
+          <% end %>
+        <% end %>

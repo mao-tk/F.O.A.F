@@ -1,6 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-
+  before_action :authenticate_user!, except: [:index]
   def new
     @post = Post.new
   end
@@ -20,23 +19,38 @@ class Public::PostsController < ApplicationController
     if params[:search]
       @keyword = params[:search]
       @posts_all = Post.search(@keyword)
-      @posts = @posts_all.page(params[:page]).per(9)
+      @posts = @posts_all.status_public.page(params[:page]).per(9)
     else
-      @posts = Post.order('id DESC').page(params[:page]).per(9)
+      @posts = Post.status_public.includes(:user).order('id DESC').page(params[:page]).per(9)
     end
 
   end
 
   def show
     @folders = current_user.folders
-    @folder = Folder.find(params[:id])
+    # @folder = Folder.find(params[:id])
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @comment = Comment.new
-    @bookmarked_folders = current_user.bookmarks.pluck(:folder_id)
+    @bookmarked_folders = current_user.bookmarks.where(post: @post)
+
+    if @post.status_private? && @post.user != current_user
+      redirect_to root_path
+    end
+
   end
 
   def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   private
