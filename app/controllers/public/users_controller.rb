@@ -18,6 +18,10 @@ class Public::UsersController < ApplicationController
   end
 
   def quit
+    user = current_user
+    user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path, notice: "退会手続きが完了しました"
   end
 
 end
