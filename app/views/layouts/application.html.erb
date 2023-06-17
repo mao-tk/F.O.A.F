@@ -13,6 +13,7 @@
 
   <body>
     <div class="container">
+      <%= render 'layouts/flash' %>
       <div class="row">
         <div class="col-3">
           <%= render "layouts/sidemenu" %>
@@ -24,8 +25,6 @@
             <% end %>
           </div>
           <div class="mt-5">
-            <%= notice %>
-            <%= alert %>
             <%= yield %>
           </div>
         </div>
