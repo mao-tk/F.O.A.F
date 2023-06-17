@@ -22,6 +22,11 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def posts
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.order('id DESC').page(params[:page]).per(9)
+  end
+
   private
 
   def user_params

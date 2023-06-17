@@ -37,7 +37,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'users#index'
     resource :areas, only: %i[new index create edit update]
-    resources :users, only: %i[index show edit update]
+    resources :users, only: %i[index show edit update] do
+      get "/posts" => "users#posts"
+    end
     
     resources :posts, only: %i[index show] do
       resources :comments, only: %i[destroy]
