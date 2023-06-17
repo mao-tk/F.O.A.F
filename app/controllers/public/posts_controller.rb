@@ -23,7 +23,6 @@ class Public::PostsController < ApplicationController
     else
       @posts = Post.status_public.includes(:user).order('id DESC').page(params[:page]).per(9)
     end
-
   end
 
   def show
