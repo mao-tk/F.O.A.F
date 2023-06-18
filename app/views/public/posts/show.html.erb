@@ -38,7 +38,10 @@
       </div>
       <div class="card-body">
         <h1 class="card-title"><%= @post.title %></h1>
-        <div class="card-text"><%= simple_format(@post.body) %></div>
+        <div class="card-text"><%= simple_format(@post.body) %>
+
+          <%= image_tag @post.get_post_image(100,100) %>
+        </div>
       </div>
       <div class="card-footer bg-transparent text-right">
         <% @post_tags.each do |tag| %>

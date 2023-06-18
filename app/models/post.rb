@@ -13,10 +13,7 @@ class Post < ApplicationRecord
   has_one_attached :post_image
 
   def get_post_image(width, height)
-    # unless profile_image.attached?
-    #   file_path = Rails.root.join('app/assets/images/no-image.jpg')
-    #   profile_image.attach(io: File.open(file_path), filename: 'no-image.png', content_type: 'image/png')
-    # end
+    return "" unless post_image.attached?
     post_image.variant(resize_to_limit:[width, height]).processed
   end
 
