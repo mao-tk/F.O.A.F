@@ -1,6 +1,30 @@
+<div class="mb-3">
+<% if params[:search].present? %>
+  <% if params[:search].start_with?("#") %>
+    <!-- タグ検索の場合 -->
 
 
+        <h5>"<%= @tag_name %>" タグ検索結果</h5>
 
+
+<span>類似タグ一覧</span>
+      <div class="tag-list">
+        <% @tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          <%=link_to tag.name, posts_path(tag_id: tag.id) %>
+          <%="(#{tag.posts.count})" %>
+        <% end %>
+      </div>
+
+
+  <% elsif params[:search].start_with?("@") %>
+    <!-- エリア検索の場合 -->
+    <h5>"<%= @area_name %>" 地域検索結果</h5>
+  <% else %>
+    <h5>"<%= @keyword %>" キーワード検索結果</h5>
+  <% end %>
+<% end %>
+</div>
 <%= render "public/posts/index", posts: @posts %>
 
 
