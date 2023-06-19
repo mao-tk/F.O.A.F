@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resource :areas, only: %i[new index create edit update]
     resources :users, only: %i[index show edit update] do
       get "/posts" => "users#posts"
+      get "/comments" => "users#comments"
     end
 
     resources :posts, only: %i[index show] do

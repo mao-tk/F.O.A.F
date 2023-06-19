@@ -27,6 +27,11 @@ class Admin::UsersController < ApplicationController
     @posts = @user.posts.order('id DESC').page(params[:page]).per(9)
   end
 
+  def comments
+    @user = User.find(params[:user_id])
+    @comments = @user.comments.order('id DESC')
+  end
+
   private
 
   def user_params

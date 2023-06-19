@@ -38,14 +38,6 @@ class Public::PostsController < ApplicationController
     end
   end
 
-  # def search
-  #   if (params[:keyword])[0] == '#'
-  #     @posts = Tag.search(params[:keyword]).order('created_at DESC')
-  #   else
-  #     @posts = Post.search(params[:keyword]).order('created_at DESC')
-  #   end
-  # end
-
   def show
     @folders = current_user.folders
     @post = Post.find(params[:id])
@@ -56,7 +48,6 @@ class Public::PostsController < ApplicationController
     if @post.status_private? && @post.user != current_user
       redirect_to root_path
     end
-
   end
 
   def edit
