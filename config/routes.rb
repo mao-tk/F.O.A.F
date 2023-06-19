@@ -18,12 +18,13 @@ Rails.application.routes.draw do
     root 'posts#index'
     get 'about' => 'homes#about'
 
-    # get 'mypage' => 'users#show'
     get 'users/confirm' => 'users#confirm'
     patch 'users/quit' => 'users#quit'
     resources :users, only: %i[show] do
       get "/posts" => "users#posts"
     end
+
+    get "/search" => "posts#search"
 
     # indexはルートパス設定済み
     resources :posts do
@@ -40,7 +41,7 @@ Rails.application.routes.draw do
     resources :users, only: %i[index show edit update] do
       get "/posts" => "users#posts"
     end
-    
+
     resources :posts, only: %i[index show] do
       resources :comments, only: %i[destroy]
     end

@@ -45,9 +45,8 @@
       </div>
       <div class="card-footer bg-transparent text-right">
         <% @post_tags.each do |tag| %>
-          <%= link_to "#" do %>
-            #<%=tag.name%>
-          <% end %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          <%= link_to tag.name, posts_path(tag_id: tag.id) %>
         <% end %>
       </div>
     </div>
