@@ -1,0 +1,23 @@
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @users.each do |user| %>
+  <div class="col mb-3">
+    <div class="card">
+      <%= image_tag user.get_profile_image(150,150), class: "card-img-top" %>
+      <div class="card-body">
+        <div class="card-text">
+          <%= link_to admin_user_path(user), class: "stretched-link" do %>
+            <%= user.name %><br>
+          <% end %>
+          <% if user.is_deleted %>
+            <span class="text-secondary">退会</span>
+          <% else %>
+            <span class="text-success">有効</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<%= paginate @users %>

@@ -1,0 +1,45 @@
+<%= form_with model: @post do |f| %>
+  <div class="form-group">
+    <table class="table table-borderless">
+      <tr>
+        <td>
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control" %>
+        </td>
+        <!--クラス名変更すること-->
+        <td rowspan="2" class="align-bottom">
+          <div class="userProfileImg">
+            <%= f.label :post_image, "画像投稿",for: "file_photo", class: "userProfileImg_description" %>
+            <i class="fas fa-camera fa-3x"></i>
+            <%= f.file_field :post_image, accept: "image/*", id: "file_photo" %>
+          </div>
+          <%= f.select :status, [["公開", "public"], ["非公開", "private"]], { include_blank: true, selected: "public" }, {class: "form-control" } %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :tag %>
+          <%= f.text_field :tag_name, class: "form-control" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :area %>
+          <%= f.collection_select :area_id, Area.all, :id, :name, { prompt: "選択してください" }, { class: "form-control" } %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <%= f.label :body, "Text" %>
+          <%= f.text_area :body, class: "form-control", size: "30x10" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.submit "投稿", class: "btn px-5 border" %>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+<% end %>

@@ -1,0 +1,54 @@
+<div class="row mb-4">
+  <!--ユーザーinfo-->
+  <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle border" %>
+  <%= link_to edit_user_registration_path, class: "d-flex align-items-end text-dark" do %>
+    <i class="fas fa-cog"></i>
+  <% end %>
+  
+  <h1 class="d-flex align-items-center ml-4"><%= @user.name %></h1>
+
+</div>
+
+<%= render "public/posts/index", posts: @posts %>
+
+<div class="mt-3 text-right">
+   <%= link_to "MORE >>", user_posts_path(@user) %>
+</div>
+
+<div class="row">
+    <!--ブックマークフォルダ-->
+    <div class="d-flex">
+      <h5 class="my-auto">BOOK MARK</h5>
+      <button type="button" class="btn border rounded-circle ml-3" data-toggle="modal" data-target="#bookmarkModal" data-whatever="@folder"><i class="fas fa-plus"></i></button>
+    </div>
+
+    <!--フォルダー作成モーダル-->
+    <div class="modal fade" id="bookmarkModal" tabindex="-1" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bookmarkModalLabel">ブックマークフォルダを追加</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= form_with model: @folder do |f| %>
+              <div class="form-group">
+                <%= f.label :name, "フォルダ名" %>
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+              <div class="text-right">
+                <%= f.submit "追加", class: "btn border" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+    <div class="row">
+      <%= render "public/folders/index", folders: @folders %>
+    </div>

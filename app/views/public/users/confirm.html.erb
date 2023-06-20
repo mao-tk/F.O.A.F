@@ -1,0 +1,19 @@
+<h4>退会確認</h4>
+
+<p>注意事項をお読みください<br>
+F.O.A.Fをご利用いただき誠にありがとうございます。</p>
+
+<p>下記の注意事項を確認したのちに退会手続きへとお進みください。</p>
+
+
+<span class="text-danger">【データがすべて削除されます】</span>
+<p>作成していただいた投稿、ブックマークフォルダなど全てのデータが削除されます。</p>
+
+<span class="text-danger">【再度ご利用される際には再登録が必要です】</span>
+<p>アカウントの復活は原則できません。再度ご利用される場合には、新規登録画面から再登録してご利用ください。</p>
+
+
+<div class="d-flex justify-content-center mt-5">
+  <%= link_to "退会しない", user_path(current_user), class: "btn border px-4 mr-4" %>
+  <%= link_to "退会する", users_quit_path, data: {confirm: "本当に退会しますか？"}, method: :patch, class: "btn border-danger text-danger px-4" %>
+</div>
