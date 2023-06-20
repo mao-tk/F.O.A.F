@@ -22,10 +22,14 @@ class Public::PostsController < ApplicationController
     if params[:search]
       if params[:search].start_with?("#")
         # タグ検索の場合
+        # @tag_name = params[:search].slice(1..-1)
+        # @tag = Tag.where("name LIKE ?", "%#{@tag_name}%").first
+        # @tags = Tag.where("name LIKE ?", "%#{@tag_name}%")
+        # @posts = @tag.posts.status_public.page(params[:page]).per(9) if @tag
         @tag_name = params[:search].slice(1..-1)
-        @tag = Tag.where("name LIKE ?", "%#{@tag_name}%").first
         @tags = Tag.where("name LIKE ?", "%#{@tag_name}%")
-        @posts = @tag.posts.status_public.order('id DESC').page(params[:page]).per(9) if @tag
+        tag_ids = @tags.pluck(:id)
+        @posts = Post.status_public.joins(:tags).where(tags: { id: tag_ids }).page(params[:page]).per(9)
       elsif params[:search].start_with?("@")
         # エリア検索の場合
         @area_name = params[:search].slice(1..-1)
