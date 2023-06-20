@@ -1,0 +1,28 @@
+<h4>"<%= @user.name %>"さんのコメント一覧</h4>
+
+<table class="table border">
+  <thead>
+    <tr>
+      <th width="20%">投稿タイトル</th>
+      <th width="20%">投稿ユーザー</th>
+      <th width="50%">コメント内容</th>
+      <th width="10%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= link_to comment.post.title, admin_post_path(comment.post) %>
+        </td>
+        <td><%= link_to comment.post.user.name, admin_user_path(comment.post.user) %></td>
+        <td><%= simple_format comment.content %></td>
+        <td>
+          <%= link_to admin_post_comment_path(comment.post, comment), method: :delete, data: {confirm: "削除しますか？"} do %>
+            <i class="fas fa-trash text-dark"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,2 +1,26 @@
-<h1>Admin::Areas#index</h1>
-<p>Find me in app/views/admin/areas/index.html.erb</p>
+<%= form_with model: [:admin, @area], url: admin_areas_path do |f| %>
+  <div class="form-group">
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.submit "登録", class: "btn border" %>
+  </div>
+<% end %>
+
+<table class="table border">
+  <tbody>
+    <% @areas.each do |area| %>
+      <tr>
+        <td><%= area.name %></td>
+        <td>
+          <%= link_to edit_admin_area_path(area) do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to admin_area_path(area), method: :delete, data: {confirm: "削除しますか？"} do %>
+            <i class="fas fa-trash text-dark"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

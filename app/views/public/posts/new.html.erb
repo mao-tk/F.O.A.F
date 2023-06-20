@@ -23,6 +23,12 @@
         </td>
       </tr>
       <tr>
+        <td>
+          <%= f.label :area %>
+          <%= f.collection_select :area_id, Area.all, :id, :name, { prompt: "選択してください" }, { class: "form-control" } %>
+        </td>
+      </tr>
+      <tr>
         <td colspan="2">
           <%= f.label :body, "Text" %>
           <%= f.text_area :body, class: "form-control", size: "30x10" %>

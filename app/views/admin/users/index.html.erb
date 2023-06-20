@@ -5,10 +5,14 @@
       <%= image_tag user.get_profile_image(150,150), class: "card-img-top" %>
       <div class="card-body">
         <div class="card-text">
-          <%= link_to admin_user_path(user) do %>
+          <%= link_to admin_user_path(user), class: "stretched-link" do %>
             <%= user.name %><br>
           <% end %>
-          <%= user.is_deleted %>
+          <% if user.is_deleted %>
+            <span class="text-secondary">退会</span>
+          <% else %>
+            <span class="text-success">有効</span>
+          <% end %>
         </div>
       </div>
     </div>

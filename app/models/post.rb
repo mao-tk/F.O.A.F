@@ -37,13 +37,4 @@ class Post < ApplicationRecord
       where(['title LIKE ?', "%#{search}%"]).or(where('body LIKE?', "%#{search}%"))
   end
 
-
-  # def self.search(search)
-  #   if search != nil
-  #     Post.where('title LIKE(?) or body LIKE(?)' , "%#{search}%",  "%#{search}%")
-  #   else
-  #     Post.all
-  #   end
-  # end
-
 end
