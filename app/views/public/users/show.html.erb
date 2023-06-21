@@ -4,7 +4,7 @@
   <%= link_to edit_user_registration_path, class: "d-flex align-items-end text-dark" do %>
     <i class="fas fa-cog"></i>
   <% end %>
-  
+
   <h1 class="d-flex align-items-center ml-4"><%= @user.name %></h1>
 
 </div>
@@ -50,5 +50,6 @@
 </div>
 
     <div class="row">
+      <%= render 'layouts/error', obj: @folder %>
       <%= render "public/folders/index", folders: @folders %>
     </div>

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       resource :bookmark, only: %i[create destroy]
     end
 
-    resources :folders, except: %i[edit new]
+    resources :folders, except: %i[edit new index]
   end
 
   namespace :admin do

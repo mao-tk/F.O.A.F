@@ -13,6 +13,11 @@
           <% end %>
         </div>
         <div class="col align-self-end text-right">
+          <% if @post.user == current_user %>
+            <%= link_to post_path(@post), method: :delete, data: {confirm: "削除しますか？"}, class: "btn border-danger rounded-circle" do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          <% end %>
           <button type="button" class="btn border rounded-circle ml-3" data-toggle="modal" data-target="#bookmarkModal" data-whatever="@folder"><i class="fas fa-bookmark"></i></button><br>
           <!--ブックマーク追加用モーダル-->
           <div class="modal fade" id="bookmarkModal" tabindex="-1" aria-labelledby="bookmarkModalLabel" aria-hidden="true">

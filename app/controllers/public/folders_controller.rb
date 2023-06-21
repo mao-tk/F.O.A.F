@@ -2,9 +2,15 @@ class Public::FoldersController < ApplicationController
   before_action :authenticate_user!
 
   def create
+    @user = current_user
+    @posts = @user.posts.order('id DESC').limit(3)
+    @folders = @user.folders
     @folder = current_user.folders.new(folder_params)
-    @folder.save
-    redirect_to request.referer
+    if @folder.save
+      redirect_to request.referer
+    else
+      render template: "public/users/show", locals: { user: current_user }
+    end
   end
 
   def index

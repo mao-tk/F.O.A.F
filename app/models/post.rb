@@ -8,6 +8,11 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
 
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :area, presence: { message: 'を選択してください' }
+
+
   enum status: { public:0, private:1 }, _prefix: true
 
   has_one_attached :post_image

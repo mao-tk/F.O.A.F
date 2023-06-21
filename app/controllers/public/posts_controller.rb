@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
     tag_list = params[:post][:tag_name].split(",")
     area_id = params[:post][:area_id] # 選択されたAreaのIDを取得
     @post.area_id = area_id # Postオブジェクトのarea_idを設定
-    if @post.save!
+    if @post.save
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
@@ -66,12 +66,20 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     tag_list = params[:post][:name].split(',')
+    area_id = params[:post][:area_id]
+    @post.area_id = area_id
     if @post.update(post_params)
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
       render :edit
     end
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to root_path
   end
 
   private
