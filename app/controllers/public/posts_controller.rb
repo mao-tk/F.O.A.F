@@ -22,10 +22,6 @@ class Public::PostsController < ApplicationController
     if params[:search]
       if params[:search].start_with?("#")
         # タグ検索の場合
-        # @tag_name = params[:search].slice(1..-1)
-        # @tag = Tag.where("name LIKE ?", "%#{@tag_name}%").first
-        # @tags = Tag.where("name LIKE ?", "%#{@tag_name}%")
-        # @posts = @tag.posts.status_public.page(params[:page]).per(9) if @tag
         @tag_name = params[:search].slice(1..-1)
         @tags = Tag.where("name LIKE ?", "%#{@tag_name}%")
         tag_ids = @tags.pluck(:id)
