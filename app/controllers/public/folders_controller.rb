@@ -9,7 +9,8 @@ class Public::FoldersController < ApplicationController
     if @folder.save
       redirect_to request.referer
     else
-      render template: "public/users/show", locals: { user: current_user }
+      redirect_to request.referrer
+      flash[:danger] = "同じ名前のフォルダーが存在します"
     end
   end
 
