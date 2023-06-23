@@ -19,19 +19,23 @@
           <%= render "layouts/sidemenu" %>
         </div>
         <div class="col-7 offset-1">
-          <div class="form-group mt-3">
-            <%= form_with url: posts_path, method: :get, local: true, class: "" do |f| %>
-              <%= f.text_field :search, placeholder: "キーワード検索｜#タグ検索｜@エリア検索", class: "form-control"%>
-            <% end %>
-          </div>
+          <% unless admin_signed_in? %>
+            <div class="form-group mt-3">
+              <%= form_with url: posts_path, method: :get, local: true, class: "" do |f| %>
+                <%= f.text_field :search, placeholder: "キーワード検索｜#タグ検索｜@エリア検索", class: "form-control"%>
+              <% end %>
+            </div>
+          <% end %>
           <div class="mt-5">
             <%= yield %>
           </div>
         </div>
         <div class="col-1 post">
+          <% unless admin_signed_in? %>
             <%= link_to new_post_path, class: "btn postBtn" do %>
               <i class="fas fa-pen fa-4x"></i>
             <% end %>
+          <% end %>
         </div>
       </div>
     </div>

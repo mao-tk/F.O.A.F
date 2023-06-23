@@ -26,7 +26,8 @@ class Public::FoldersController < ApplicationController
     if @folder.update(folder_params)
       redirect_to request.referer
     else
-      render :show
+      redirect_to request.referer
+      flash[:danger] = "同じ名前のフォルダーが存在します"
     end
   end
 

@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 2023_06_04_015538) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "area_id"
-    t.integer "tag_id"
     t.string "title"
     t.text "body"
     t.integer "status", default: 0

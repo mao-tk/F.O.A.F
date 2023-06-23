@@ -1,0 +1,44 @@
+<!--ロゴ-->
+<%= link_to root_path, class:"navbar-brand p-3" do %>
+  <%= image_tag "logo.png", size: "150x150", class: "logo" %>
+<% end %>
+
+<!--MENU-->
+<ul class="nav nav-pills flex-column mb-4">
+  <li class="nav-item">
+    <%= link_to root_path do %>
+      <i class="fas fa-home"></i> HOME
+    <% end %>
+  </li>
+  <li>
+    <%= link_to about_path do %>
+      <i class="fas fa-question-circle"></i> GUIDE
+    <% end %>
+  </li>
+  <% if user_signed_in? %>
+    <li>
+      <%= link_to user_path(current_user) do %>
+        <i class="fas fa-id-card"></i> MY PAGE
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<!--ログイン・新規登録-->
+<div class="container-fluid py-4 border-top border-bottom">
+  <% if user_signed_in? %>
+    <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-block loginBtn" do %>
+      <i class="fas fa-sign-out-alt"></i> Log out
+    <% end %>
+  <% else %>
+    <%= link_to new_user_session_path, class: "btn btn-block loginBtn" do %>
+      <i class="fas fa-sign-in-alt"></i> Log in
+    <% end %>
+    <%= link_to new_user_registration_path, class: "btn btn-block signUpBtn" do %>
+      <i class="fas fa-user-plus"></i> 新規登録はこちら
+    <% end %>
+    <%= link_to users_guest_sign_in_path, method: :post, class: "btn btn-block signUpBtn" do %>
+      <i class="fas fa-sign-in-alt"></i> ゲストログイン
+    <% end %>
+  <% end %>
+</div>

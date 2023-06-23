@@ -43,11 +43,27 @@ User.create!(
   )
 end
 
+Area.create!(name: "北海道")
+Area.create!(name: "東北地方")
+Area.create!(name: "関東地方")
+Area.create!(name: "中部地方")
+Area.create!(name: "近畿地方")
+Area.create!(name: "中国地方")
+Area.create!(name: "四国地方")
+Area.create!(name: "九州地方")
+
+
+tag = Tag.create!(
+  name: "タグ１"
+)
+
 User.all.each do |user|
-  user.posts.create!(
+    post = user.posts.create!(
     title: 'タイトル',
-    body: 'テキストテキストテキストテキスト'
+    body: 'テキストテキストテキストテキスト',
+    area_id: 1
   )
+  post.tags << tag
   user.folders.create!(
     name: 'マイリスト'
   )

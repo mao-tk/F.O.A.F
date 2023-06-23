@@ -1,57 +1,11 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light position-fixed" style="width: 280px; height: 100vh;">
-  <%= link_to root_path, class:"navbar-brand p-3" do %>
-    <%= image_tag "logo.png", size: "150x150", class: "logo" %>
+  <% if admin_signed_in? %>
+    <!--管理者用メニュー-->
+    <%= render 'layouts/admin_menu' %>
+  <% else %>
+    <!--ユーザー用メニュー-->
+    <%= render 'layouts/user_menu' %>
   <% end %>
-  <ul class="nav nav-pills flex-column mb-4">
-    <li class="nav-item">
-      <%= link_to root_path do %>
-        <i class="fas fa-home"></i> HOME
-      <% end %>
-    </li>
-    <li>
-      <%= link_to about_path do %>
-        <i class="fas fa-question-circle"></i> GUIDE
-      <% end %>
-    </li>
-
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to user_path(current_user) do %>
-          <i class="fas fa-id-card"></i> MY PAGE
-        <% end %>
-      </li>
-    <% end %>
-
-    <li class="nav-item btn signbtn px-5">
-      <% if user_signed_in? %>
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="fas fa-sign-out-alt"></i> Log out
-        <% end %>
-      <% elsif admin_signed_in? %>
-        <%= link_to destroy_admin_session_path, method: :delete do %>
-          <i class="fas fa-sign-out-alt"></i> Log out
-        <% end %>
-      <% else %>
-        <%= link_to new_user_session_path do %>
-          <i class="fas fa-sign-in-alt"></i> Log in
-        <% end %>
-      <% end %>
-    </li>
-  </ul>
-
-  <% unless user_signed_in? %>
-    <div class="container-fluid py-4 border-top border-bottom">
-      <%= link_to new_user_registration_path, class: "btn btn-block signUpBtn" do %>
-        <i class="fas fa-user-plus"></i> 新規登録はこちら
-      <% end %>
-    </div>
-    <div class="container-fluid py-4 border-top border-bottom">
-      <%= link_to users_guest_sign_in_path, method: :post, class: "btn btn-block signUpBtn" do %>
-        <i class="fas fa-sign-in-alt"></i> ゲストログイン
-      <% end %>
-    </div>
-  <% end %>
-
   <div class="container-fluid mt-4">
     <span>公式アカウント</span>
     <div class="acountBtn text-center mt-3">
@@ -61,11 +15,6 @@
       <%= link_to "#" do %>
         <i class="fab fa-instagram fa-2x"></i>
       <% end %>
-
-        <%= link_to admin_areas_path do %>
-          <i class="far fa-map"></i> Areas
-        <% end %>
     </div>
   </div>
-
 </div>

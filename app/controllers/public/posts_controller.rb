@@ -17,7 +17,6 @@ class Public::PostsController < ApplicationController
     end
   end
 
-
   def index
     if params[:search]
       if params[:search].start_with?("#")
