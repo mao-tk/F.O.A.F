@@ -27,8 +27,14 @@
 <!--ログイン・新規登録-->
 <div class="container-fluid py-4 border-top border-bottom">
   <% if user_signed_in? %>
-    <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-block loginBtn" do %>
-      <i class="fas fa-sign-out-alt"></i> Log out
+    <% if current_user.email != "guest@example.com" %>
+      <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-block loginBtn" do %>
+        <i class="fas fa-sign-out-alt"></i> Log out
+      <% end %>
+    <% else %>
+      <%= link_to users_guest_sign_out_path, method: :delete, class: "btn btn-block loginBtn" do %>
+        <i class="fas fa-sign-out-alt"></i> Log out
+      <% end %>
     <% end %>
   <% else %>
     <%= link_to new_user_session_path, class: "btn btn-block loginBtn" do %>

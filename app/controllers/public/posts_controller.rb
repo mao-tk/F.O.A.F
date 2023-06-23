@@ -29,7 +29,11 @@ class Public::PostsController < ApplicationController
         # エリア検索の場合
         @area_name = params[:search].slice(1..-1)
         @area = Area.where("name LIKE ?", "%#{@area_name}%").first
-        @posts = @area.posts.status_public.page(params[:page]).per(9) if @area
+        if @area
+          @posts = @area.posts.status_public.page(params[:page]).per(9)
+        else
+          @posts = Post.none.page(params[:page]).per(9)
+        end
       else
         # キーワード検索の場合
         @keyword = params[:search]

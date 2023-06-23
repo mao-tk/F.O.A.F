@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     post 'users/guest_sign_in' => 'public/sessions#guest_sign_in'
+    delete 'users/guest_sign_out' => 'public/sessions#guest_sign_out'
   end
 
   devise_for :admin, controllers: {
@@ -37,7 +38,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'users#index'
-    resources :areas, only: %i[new index create edit update destroy]
+    resources :areas, only: %i[index create update]
     resources :users, only: %i[index show edit update] do
       get "/posts" => "users#posts"
       get "/comments" => "users#comments"

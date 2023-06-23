@@ -5,7 +5,7 @@
         <div class="row">
         <div class="col align-self-start">
           <%= image_tag @post.user.get_profile_image(50,50), class: "rounded-circle border" %>
-          <span class="h5 ml-3"><%= @post.user.name %></span>
+          <span class="h5 ml-3"><%= link_to @post.user.name, user_path(@post.user) %></span>
           <% if @post.user == current_user %>
             <%= link_to edit_post_path(@post) do %>
               <i class="far fa-edit"></i>
@@ -62,15 +62,19 @@
       <% @post.comments.each do |comment| %>
         <tr>
           <td width="10%">
-            <%= image_tag comment.user.get_profile_image(50,50), class: "rounded-circle border" %><br>
-            <%= comment.user.name %>
+            <%= link_to user_path(comment.user) do %>
+              <%= image_tag comment.user.get_profile_image(50,50), class: "rounded-circle border" %><br>
+              <%= comment.user.name %>
+            <% end %>
           </td>
           <td width="90%">
             <div class="card">
               <div class="card-body">
                 <div class="card-text">
                   <div id="js-comment-<%= comment.id %>">
-                    <%= simple_format comment.content, id: "js-comment-label-"+(comment.id.to_s) %>
+                    <div id="js-comment-label-<%= comment.id %>">
+                      <%= simple_format comment.content %>
+                    </div>
                     <%= simple_format "", id: "js-comment-post-error-"+(comment.id.to_s), class: "text-danger" %>
                     <textarea style="display: none;" id="js-textarea-comment-<%= comment.id %>" class="form-control comment-post-error"><%= comment.content %></textarea>
                     <div id="js-comment-button-<%= comment.id %>" style="display: none;">
