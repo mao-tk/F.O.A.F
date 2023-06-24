@@ -9,7 +9,7 @@ class Public::FoldersController < ApplicationController
     if @folder.save
       redirect_to request.referer
     else
-      redirect_to request.referrer
+      redirect_to request.referer
       flash[:danger] = "同じ名前のフォルダーが存在します"
     end
   end
