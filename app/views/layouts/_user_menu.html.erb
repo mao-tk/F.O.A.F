@@ -28,22 +28,22 @@
 <div class="container-fluid py-4 border-top border-bottom">
   <% if user_signed_in? %>
     <% if current_user.email != "guest@example.com" %>
-      <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-block loginBtn" do %>
+      <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-block blackBtn" do %>
         <i class="fas fa-sign-out-alt"></i> Log out
       <% end %>
     <% else %>
-      <%= link_to users_guest_sign_out_path, method: :delete, class: "btn btn-block loginBtn" do %>
+      <%= link_to users_guest_sign_out_path, method: :delete, class: "btn btn-block blackBtn" do %>
         <i class="fas fa-sign-out-alt"></i> Log out
       <% end %>
     <% end %>
   <% else %>
-    <%= link_to new_user_session_path, class: "btn btn-block loginBtn" do %>
+    <%= link_to new_user_session_path, class: "btn btn-block blackBtn" do %>
       <i class="fas fa-sign-in-alt"></i> Log in
     <% end %>
-    <%= link_to new_user_registration_path, class: "btn btn-block signUpBtn" do %>
+    <%= link_to new_user_registration_path, class: "btn btn-block blackBtn" do %>
       <i class="fas fa-user-plus"></i> 新規登録
     <% end %>
-    <%= link_to users_guest_sign_in_path, method: :post, class: "btn btn-block signUpBtn" do %>
+    <%= link_to users_guest_sign_in_path, method: :post, class: "btn btn-block blackBtn" do %>
       <i class="fas fa-sign-in-alt"></i> ゲストログイン
     <% end %>
   <% end %>

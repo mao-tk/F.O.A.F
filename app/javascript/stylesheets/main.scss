@@ -14,25 +14,14 @@ li {
   bottom: 100px;
   right: 200px;
   background: #72c4a1;
-  border: solid 5px #000;
+  border: solid 3px #2e292b;
   padding: 20px;
-  color: #000;
+  color: #2e292b;
   border-radius: 50%;
   &:hover {
-    color: #000;
+    color: #2e292b;
   }
 }
-
-// .pagination {
-//   justify-content: center;
-// }
-
-// a{
-//   color: #000;
-//   &:hover {
-//     color: #000;
-//   }
-// }
 
 #flash {
   position: absolute;
@@ -57,7 +46,7 @@ li {
 }
 
 body {
-  background-image: image-url("../images/wave.jpg");
+  background-image: url("../images/wave.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -106,30 +95,41 @@ body {
 }
 
 .sideMenu {
-  background-color: #fff;
-  color: #2e292b;
-  border-right: 20px solid #ba422b;
-  border-left: 20px solid #ba422b;
+  background-color: #ba422b;
+  color: #fff;
   a{
+    color: #fff;
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+.blackBtn {
+  background: #2e292b;
+  color: #fff;
+  border-radius: 90px;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.card {
+  background-color: #f7f4ed;
+  a {
     color: #2e292b;
     &:hover {
       color: #2e292b;
     }
   }
-  .signUpBtn {
-    background: #d15536;
-    border-radius: 90px;
+  .postDelete {
+    background-color: #ba422b;
     color: #fff;
-    &:hover {
-      color: #fff;
-    }
   }
-  .loginBtn {
-    background: #6fc5a2;
+  .bookmarkBtn {
+    background-color: #72c4a1;
     color: #fff;
-    border-radius: 90px;
     &:hover {
-      color: #fff;
+      color: #2e292b;
     }
   }
 }
