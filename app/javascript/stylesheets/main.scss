@@ -6,6 +6,19 @@ li {
   margin: 10px;
 }
 
+a {
+  color: #2e292b;
+  &:hover {
+    color: #2e292b;
+  }
+}
+
+textarea {
+  resize: none; /* 手動リサイズを禁止 */
+  min-height: 100px; /* 高さの最小値を指定（任意） */
+  width: 100%;
+}
+
 .post {
   position: relative;
 }
@@ -19,7 +32,8 @@ li {
   color: #2e292b;
   border-radius: 50%;
   &:hover {
-    color: #2e292b;
+    background: rgba(114, 196, 161, .5);
+    color: rgba(46, 41, 43, .5);
   }
 }
 
@@ -112,18 +126,31 @@ body {
     color: #fff;
   }
 }
+.grayBtn {
+  background: #f5f5f5;
+  color: #2e292b;
+  border-radius: 90px;
+  &:hover {
+    color: #2e292b;
+  }
+}
+.greenBtn {
+  background: #72c4a1;
+  color: #2e292b;
+  border-radius: 90px;
+  &:hover {
+    color: #2e292b;
+  }
+}
 
 .card {
   background-color: #f7f4ed;
-  a {
-    color: #2e292b;
-    &:hover {
-      color: #2e292b;
-    }
-  }
   .postDelete {
     background-color: #ba422b;
     color: #fff;
+    &:hover {
+      color: #2e292b;
+    }
   }
   .bookmarkBtn {
     background-color: #72c4a1;
@@ -131,5 +158,12 @@ body {
     &:hover {
       color: #2e292b;
     }
+  }
+}
+
+.postIndex {
+  transition-duration: .4s;
+  &:hover {
+    transform: scale(1.1);
   }
 }
