@@ -58,3 +58,14 @@ User.all.each do |user|
     name: 'マイリスト'
   )
 end
+
+
+
+# テスト用データ
+test_post = Post.create(title: "テスト用投稿", body: "テスト用文章", area_id: 1, user_id: 1)
+test_post.post_image.attach(io: File.open("./app/assets/images/test.png"), filename: "test.png")
+test_tag = Tag.create(name: "テスト用タグ")
+test_post.tags << test_tag
+Comment.create(content: "テスト用コメント", post_id: test_post.id, user_id: 1)
+test_folder = Folder.create(name: "テスト用フォルダ", user_id: 1)
+Bookmark.create(user_id: 1, post_id: test_post.id, folder_id: test_folder.id)
