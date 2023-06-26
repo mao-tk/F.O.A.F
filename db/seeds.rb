@@ -14,9 +14,9 @@ Admin.create!(
 User.create!(
   [
     {
-      email: 'x.ri.mm.s@gmail.com',
+      email: 'test@test.com',
       password: '123456',
-      name: 'mike'
+      name: 'テストユーザー'
     }
   ]
 )
