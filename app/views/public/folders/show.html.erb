@@ -19,6 +19,8 @@
 
 <%= render "public/posts/index", posts: @bookmark_list %>
 
+<%= paginate @bookmark_list %>
+
 
 <script>
   document.getElementById('edit-button').addEventListener('click', function() {

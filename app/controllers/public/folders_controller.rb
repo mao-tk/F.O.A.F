@@ -35,7 +35,12 @@ class Public::FoldersController < ApplicationController
     user = User.find(@folder.user.id)
     @posts = user.posts
     bookmarks = Bookmark.where(user_id: user.id, folder_id: @folder.id).pluck(:post_id)
-    @bookmark_list = Post.find(bookmarks)
+
+    if current_user == @folder.user
+      @bookmark_list = Post.where(id: bookmarks).page(params[:page]).per(9)
+    else
+      @bookmark_list = Post.where(id: bookmarks).status_public.page(params[:page]).per(9)
+    end
   end
 
   def destroy
