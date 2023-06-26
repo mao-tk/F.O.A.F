@@ -21,16 +21,6 @@ User.create!(
   ]
 )
 
-User.create!(
-  [
-    {
-      email: 'x.ri.s@softbank.ne.jp',
-      password: '123456',
-      name: 'まお'
-    }
-  ]
-)
-
 10.times do |n|
   User.create!(
     [
