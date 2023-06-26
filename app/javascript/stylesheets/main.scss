@@ -1,3 +1,11 @@
+body {
+  background-image: url("../../assets/images/wave.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
 .logo {
   border-radius: 10%;
 }
@@ -31,10 +39,6 @@ textarea {
   padding: 20px;
   color: #2e292b;
   border-radius: 50%;
-  &:hover {
-    background: rgba(114, 196, 161, .5);
-    color: rgba(46, 41, 43, .5);
-  }
 }
 
 #flash {
@@ -51,19 +55,12 @@ textarea {
 }
 
 .withdrawalBtn {
-  background: #dc143c;
+  background: #ba422b;
   border-radius: 90px;
   color: #fff;
   &:hover {
     color: #fff;
   }
-}
-
-body {
-  background-image: url("../../assets/images/wave.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
 }
 
 /* ページネーション全体 */
@@ -166,4 +163,8 @@ body {
   &:hover {
     transform: scale(1.1);
   }
+}
+
+.plusBtn {
+  border: solid 2px #72c4a1;
 }

@@ -4,12 +4,12 @@
     <%= render "layouts/error", obj: @folder %>
     <%= form_with model: @folder do |f| %>
       <div class="form-group">
-        <%= f.label :name, "フォルダ名" %> <%= link_to "フォルダを削除", folder_path(@folder), method: :delete, data: {confirm: "削除しますか？"}, class: "btn border-danger mb-3" %>
+        <%= f.label :name, "フォルダ名" %> <%= link_to "フォルダを削除", folder_path(@folder), method: :delete, data: {confirm: "削除しますか？"}, class: "btn withdrawalBtn mb-3" %>
 
         <%= f.text_field :name, class: "form-control" %>
       </div>
       <div class="text-right">
-        <%= f.submit "更新", class: "btn border" %>
+        <%= f.submit "更新", class: "btn greenBtn" %>
       </div>
     <% end %>
   </div>

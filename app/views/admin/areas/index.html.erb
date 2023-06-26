@@ -2,7 +2,9 @@
 <%= form_with model: [:admin, @area], url: admin_areas_path do |f| %>
   <div class="form-group">
     <%= f.text_field :name, class: "form-control" %>
-    <%= f.submit "登録", class: "btn border" %>
+    <div class="text-right">
+      <%= f.submit "登録", class: "btn greenBtn mt-2" %>
+    </div>
   </div>
 <% end %>
 
@@ -18,7 +20,9 @@
             <%= form_with model: [:admin, area] do |f| %>
               <div class="form-group">
                 <%= f.text_field :name, class: "form-control" %>
-                <%= f.submit "更新", class: "btn border" %>
+                <div class="text-right">
+                  <%= f.submit "更新", class: "btn greenBtn mt-2" %>
+                </div>
               </div>
             <% end %>
           </div>

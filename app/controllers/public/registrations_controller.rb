@@ -83,7 +83,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def ensure_normal_user
     if resource.email == 'guest@example.com'
       redirect_to root_path
+      flash[:danger] = "ゲストユーザーは変更できません"
     end
+  end
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
   end
 
   private
