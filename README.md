@@ -18,7 +18,8 @@
 - 口承文学研究として話の収集や話型分類をしたいとき
 
 ## 設計書
-<...>
+
+![FOAF_ER図 drawio (1)](https://github.com/mao-tk/F.O.A.F/assets/126842098/c112dd5e-950f-494f-98e7-dde464008885)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -28,5 +29,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+- https://fontawesome.com/
