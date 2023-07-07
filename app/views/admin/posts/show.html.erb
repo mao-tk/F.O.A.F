@@ -8,6 +8,9 @@
           <span class="h5 ml-3"><%= link_to @post.user.name, admin_user_path(@post.user) %></span>
         </div>
         <div class="col align-self-end text-right">
+          <%= link_to admin_post_path(@post), method: :delete, data: {confirm: "削除しますか？"}, class: "btn rounded-circle postDelete" do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %><br>
           <%= @post.area.name %><br>
           <%= l @post.created_at %>
         </div>

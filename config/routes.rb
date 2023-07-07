@@ -44,7 +44,7 @@ Rails.application.routes.draw do
       get "/comments" => "users#comments"
     end
 
-    resources :posts, only: %i[index show] do
+    resources :posts, only: %i[index show destroy] do
       resources :comments, only: %i[destroy]
     end
   end
