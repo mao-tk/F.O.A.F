@@ -223,3 +223,9 @@ textarea {
 .plusBtn {
   border: solid 2px #72c4a1;
 }
+
+@media (max-width: 767px) {
+  .sideMenu {
+    display: none;
+  }
+}

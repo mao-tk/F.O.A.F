@@ -1,0 +1,101 @@
+<header class="d-lg-none">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <div class="row w-100">
+        <div class="col-3">
+          <%= link_to root_path, class: 'nav-link nav-brand' do %>
+            F.O.A.F
+          <% end %>
+        </div>
+        <div class="col-9">
+          <div class="row w-100 justify-content-end">
+            <button class="navbar-toggler" style="color:#000;" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-5">
+                <% if admin_signed_in? %>
+
+                  <li>
+                    <%= link_to admin_root_path do %>
+                      <i class="fa-regular fa-user"></i> USER
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to admin_posts_path do %>
+                      <i class="fa-regular fa-newspaper"></i> POST
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to admin_areas_path do %>
+                      <i class="far fa-map"></i> Areas
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%= link_to destroy_admin_session_path, method: :delete, class: "btn btn-block blackBtn" do %>
+                      <i class="fas fa-sign-out-alt"></i> Log out
+                    <% end %>
+                  </li>
+
+                <% else %>
+
+                  <li>
+                    <%= link_to root_path do %>
+                      <i class="fas fa-home"></i> HOME
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to about_path do %>
+                      <i class="fas fa-question-circle"></i> GUIDE
+                    <% end %>
+                  </li>
+                  <% if user_signed_in? %>
+                    <li>
+                      <%= link_to user_path(current_user) do %>
+                        <i class="fas fa-id-card"></i> MY PAGE
+                      <% end %>
+                    </li>
+                  <% end %>
+
+                  <% if user_signed_in? %>
+                    <% if current_user.email != "guest@example.com" %>
+                    <li>
+                      <%= link_to destroy_user_session_path, method: :delete do %>
+                        <i class="fas fa-sign-out-alt"></i> Log out
+                      <% end %>
+                    </li>
+                    <% else %>
+                    <li>
+                      <%= link_to users_guest_sign_out_path, method: :delete do %>
+                        <i class="fas fa-sign-out-alt"></i> Log out
+                      <% end %>
+                    </li>
+                    <% end %>
+                  <% else %>
+                    <li>
+                      <%= link_to new_user_session_path do %>
+                        <i class="fas fa-sign-in-alt"></i> Log in
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to new_user_registration_path do %>
+                        <i class="fas fa-user-plus"></i> 新規登録
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to users_guest_sign_in_path, method: :post do %>
+                        <i class="fas fa-sign-in-alt"></i> ゲストログイン
+                      <% end %>
+                    </li>
+                  <% end %>
+
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

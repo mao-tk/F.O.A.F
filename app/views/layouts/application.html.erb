@@ -14,6 +14,7 @@
   <body>
     <div class="container">
       <%= render 'layouts/flash' %>
+      <%= render 'layouts/header' %>
       <div class="row">
         <div class="col-3">
           <%= render "layouts/sidemenu" %>
@@ -39,6 +40,15 @@
         </div>
       </div>
     </div>
-  </div>
+
+    <script>
+      $(function() {
+        // ハンバーガーメニューがクリックされた時の処理
+        $('.navbar-toggler').on('click', function() {
+          $('.sideMenu').toggleClass('d-none');
+        });
+      });
+    </script>
+
   </body>
 </html>
