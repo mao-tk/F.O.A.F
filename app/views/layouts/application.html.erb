@@ -16,10 +16,10 @@
       <%= render 'layouts/flash' %>
       <%= render 'layouts/header' %>
       <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3 d-none d-lg-block">
           <%= render "layouts/sidemenu" %>
         </div>
-        <div class="col-7 offset-1">
+        <div class="col-12 col-lg-7 offset-lg-1">
           <% unless admin_signed_in? %>
             <div class="form-group mt-3">
               <%= form_with url: posts_path, method: :get, local: true, class: "" do |f| %>
@@ -31,7 +31,7 @@
             <%= yield %>
           </div>
         </div>
-        <div class="col-1 post">
+        <div class="col-lg-1 d-none d-lg-block post">
           <% unless admin_signed_in? %>
             <%= link_to new_post_path, class: "btn postBtn shadow" do %>
               <i class="fas fa-pen fa-4x"></i>
@@ -40,15 +40,5 @@
         </div>
       </div>
     </div>
-
-    <script>
-      $(function() {
-        // ハンバーガーメニューがクリックされた時の処理
-        $('.navbar-toggler').on('click', function() {
-          $('.sideMenu').toggleClass('d-none');
-        });
-      });
-    </script>
-
   </body>
 </html>
