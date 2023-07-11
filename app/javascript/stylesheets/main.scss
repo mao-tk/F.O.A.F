@@ -228,4 +228,14 @@ textarea {
   .sideMenu {
     display: none;
   }
+  .postBtn {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background: #72c4a1;
+  border: solid 3px #2e292b;
+  padding: 20px;
+  color: #2e292b;
+  border-radius: 50%;
+  }
 }

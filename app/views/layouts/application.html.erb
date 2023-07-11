@@ -19,7 +19,7 @@
         <div class="col-lg-3 d-none d-lg-block">
           <%= render "layouts/sidemenu" %>
         </div>
-        <div class="col-12 col-lg-7 offset-lg-1">
+        <div class="col-11 col-lg-7 offset-lg-1 mx-auto">
           <% unless admin_signed_in? %>
             <div class="form-group mt-3">
               <%= form_with url: posts_path, method: :get, local: true, class: "" do |f| %>
@@ -35,6 +35,13 @@
           <% unless admin_signed_in? %>
             <%= link_to new_post_path, class: "btn postBtn shadow" do %>
               <i class="fas fa-pen fa-4x"></i>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-lg-1 d-lg-none d-md-none post">
+          <% unless admin_signed_in? %>
+            <%= link_to new_post_path, class: "btn postBtn shadow" do %>
+              <i class="fas fa-pen"></i>
             <% end %>
           <% end %>
         </div>
