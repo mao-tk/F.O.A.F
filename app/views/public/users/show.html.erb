@@ -4,7 +4,7 @@
   <%= link_to edit_user_registration_path, class: "d-flex align-items-end text-dark" do %>
     <i class="fas fa-cog"></i>
   <% end %>
-  
+
   <h1 class="d-flex align-items-center ml-4"><%= @user.name %></h1>
 
 </div>
@@ -19,7 +19,7 @@
     <!--ブックマークフォルダ-->
     <div class="d-flex">
       <h5 class="my-auto">BOOK MARK</h5>
-      <button type="button" class="btn border rounded-circle ml-3" data-toggle="modal" data-target="#bookmarkModal" data-whatever="@folder"><i class="fas fa-plus"></i></button>
+      <button type="button" class="btn shadow rounded-circle plusBtn ml-3" data-toggle="modal" data-target="#bookmarkModal" data-whatever="@folder"><i class="fas fa-plus"></i></button>
     </div>
 
     <!--フォルダー作成モーダル-->
@@ -50,5 +50,6 @@
 </div>
 
     <div class="row">
+      <%= render 'layouts/error', obj: @folder %>
       <%= render "public/folders/index", folders: @folders %>
     </div>

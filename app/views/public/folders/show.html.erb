@@ -1,1 +1,34 @@
+<% if @folder.name != "マイリスト" %>
+  <div class="mb-5 h4" id="folder-name"><%= @folder.name %> <i id="edit-button" class="fa-regular fa-pen-to-square btn"></i></div>
+  <div id="edit-form" style="display: none;">
+    <%= render "layouts/error", obj: @folder %>
+    <%= form_with model: @folder do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "フォルダ名" %> <%= link_to "フォルダを削除", folder_path(@folder), method: :delete, data: {confirm: "削除しますか？"}, class: "btn withdrawalBtn mb-3" %>
+
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="text-right">
+        <%= f.submit "更新", class: "btn greenBtn" %>
+      </div>
+    <% end %>
+  </div>
+<% elsif %>
+  <div class="mb-5 h4"><%= @folder.name %></div>
+<% end %>
+
 <%= render "public/posts/index", posts: @bookmark_list %>
+
+<%= paginate @bookmark_list %>
+
+
+<script>
+  document.getElementById('edit-button').addEventListener('click', function() {
+    document.getElementById('folder-name').style.display = 'none';
+    document.getElementById('edit-form').style.display = 'block';
+  });
+  <% if @folder.errors.any? %>
+    document.getElementById('folder-name').style.display = 'none';
+    document.getElementById('edit-form').style.display = 'block';
+  <% end %>
+</script>

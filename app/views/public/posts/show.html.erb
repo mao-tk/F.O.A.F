@@ -5,7 +5,7 @@
         <div class="row">
         <div class="col align-self-start">
           <%= image_tag @post.user.get_profile_image(50,50), class: "rounded-circle border" %>
-          <span class="h5 ml-3"><%= @post.user.name %></span>
+          <span class="h5 ml-3"><%= link_to @post.user.name, user_path(@post.user) %></span>
           <% if @post.user == current_user %>
             <%= link_to edit_post_path(@post) do %>
               <i class="far fa-edit"></i>
@@ -13,7 +13,12 @@
           <% end %>
         </div>
         <div class="col align-self-end text-right">
-          <button type="button" class="btn border rounded-circle ml-3" data-toggle="modal" data-target="#bookmarkModal" data-whatever="@folder"><i class="fas fa-bookmark"></i></button><br>
+          <% if @post.user == current_user %>
+            <%= link_to post_path(@post), method: :delete, data: {confirm: "削除しますか？"}, class: "btn rounded-circle postDelete" do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          <% end %>
+          <button type="button" class="btn border rounded-circle ml-3 bookmarkBtn" data-toggle="modal" data-target="#bookmarkModal" data-whatever="@folder"><i class="fas fa-bookmark"></i></button><br>
           <!--ブックマーク追加用モーダル-->
           <div class="modal fade" id="bookmarkModal" tabindex="-1" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -57,20 +62,24 @@
       <% @post.comments.each do |comment| %>
         <tr>
           <td width="10%">
-            <%= image_tag comment.user.get_profile_image(50,50), class: "rounded-circle border" %><br>
-            <%= comment.user.name %>
+            <%= link_to user_path(comment.user) do %>
+              <%= image_tag comment.user.get_profile_image(50,50), class: "rounded-circle border" %><br>
+              <%= comment.user.name %>
+            <% end %>
           </td>
           <td width="90%">
             <div class="card">
               <div class="card-body">
                 <div class="card-text">
                   <div id="js-comment-<%= comment.id %>">
-                    <%= simple_format comment.content, id: "js-comment-label-"+(comment.id.to_s) %>
+                    <div id="js-comment-label-<%= comment.id %>">
+                      <%= simple_format comment.content %>
+                    </div>
                     <%= simple_format "", id: "js-comment-post-error-"+(comment.id.to_s), class: "text-danger" %>
                     <textarea style="display: none;" id="js-textarea-comment-<%= comment.id %>" class="form-control comment-post-error"><%= comment.content %></textarea>
-                    <div id="js-comment-button-<%= comment.id %>" style="display: none;">
-                      <button data-cancel-id=<%= comment.id %> type="button" class="btn btn-sm btn-light comment-cancel-button">キャンセル</button>
-                      <button data-update-id=<%= comment.id%> type="submit" class="btn btn-sm btn-info comment-update-button">更新</button>
+                    <div id="js-comment-button-<%= comment.id %>" style="display: none;" class="mt-3">
+                      <button data-cancel-id=<%= comment.id %> type="button" class="btn btn-sm comment-cancel-button grayBtn">キャンセル</button>
+                      <button data-update-id=<%= comment.id%> type="submit" class="btn btn-sm comment-update-button greenBtn">更新</button>
                     </div>
                   </div>
                 </div>
@@ -91,10 +100,10 @@
       <% end %>
     </table>
   </div>
-  <div class="row mt-3">
+  <div class="row mt-3 mx-auto">
     <%= form_with model: [@post, @comment] do |f| %>
-      <%= f.text_area :content, rows: '3', placeholder: "コメントをここに", class: "form-control" %>
-      <%= f.submit "送信", class: "btn border" %>
+      <%= f.text_area :content, rows: '5', cols: '50', placeholder: "コメントをここに", class: "form-control" %>
+      <%= f.submit "送信", class: "btn border blackBtn" %>
     <% end %>
   </div>
 </div>

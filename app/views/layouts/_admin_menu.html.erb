@@ -1,0 +1,30 @@
+<!--ロゴ-->
+<%= link_to admin_root_path, class: "navbar-brand p-3" do %>
+  <%= image_tag "logo.png", size: "200x200", class: "logo" %>
+<% end %>
+
+<!--MENU-->
+<ul class="nav nav-pills flex-column mb-4">
+  <li class="nav-item">
+    <%= link_to admin_root_path do %>
+      <i class="fa-regular fa-user"></i> USER
+    <% end %>
+  </li>
+  <li>
+    <%= link_to admin_posts_path do %>
+      <i class="fa-regular fa-newspaper"></i> POST
+    <% end %>
+  </li>
+  <li>
+    <%= link_to admin_areas_path do %>
+      <i class="far fa-map"></i> Areas
+    <% end %>
+  </li>
+</ul>
+
+<!--ログアウト-->
+<div class="container-fluid py-4 border-top border-bottom">
+  <%= link_to destroy_admin_session_path, method: :delete, class: "btn btn-block blackBtn" do %>
+    <i class="fas fa-sign-out-alt"></i> Log out
+  <% end %>
+</div>

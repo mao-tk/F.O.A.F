@@ -1,3 +1,11 @@
+body {
+  background-image: url("../../assets/images/wave.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
 .logo {
   border-radius: 10%;
 }
@@ -6,12 +14,72 @@ li {
   margin: 10px;
 }
 
-.signbtn {
-  background: #c1ffe0;
-  color: #fff;
-  border-radius: 90px;
+a {
+  color: #2e292b;
   &:hover {
+    color: #2e292b;
+  }
+}
+
+textarea {
+  resize: none; /* 手動リサイズを禁止 */
+  min-height: 100px; /* 高さの最小値を指定（任意） */
+  width: 100%;
+}
+
+.userProfileImg {
+  position: relative;
+  margin: 0 auto 10px auto;
+  width: 100px;
+  height: 100px;
+  background: #72c4a1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  &:hover .userProfileImg_description {
+    opacity: 1;
+  }
+  &_description {
+    transition: opacity .5s;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 5, 5, .5);
     color: #fff;
+  }
+  .fa-camera {
+    color: #fff;
+  }
+  &>input {
+    display: none;
+  }
+}
+
+.userImgPreview {
+  margin: 0 auto;
+  display: none;
+  text-align: center;
+  &.is-active {
+   display: block;
+  }
+  &_content {
+    max-width: 100px;
+    margin: 10px;
+    padding: 10px;
+    border: solid thin lightgray;
+    border-radius: 5px;
+  }
+  &_text {
+    font-size: 11px;
   }
 }
 
@@ -22,25 +90,11 @@ li {
   position: fixed;
   bottom: 100px;
   right: 200px;
-  background: #FFF;
-  border: solid 1px #000;
+  background: #72c4a1;
+  border: solid 3px #2e292b;
   padding: 20px;
-  color: #000;
+  color: #2e292b;
   border-radius: 50%;
-  &:hover {
-    color: #000;
-  }
-}
-
-.pagination {
-  justify-content: center;
-}
-
-a{
-  color: #000;
-  &:hover {
-    color: #000;
-  }
 }
 
 #flash {
@@ -56,11 +110,132 @@ a{
   }
 }
 
+/* ページネーション全体 */
+.pagination{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* ページネーションのspan */
+.pagination span{
+  text-align: center;
+  width: 50px;
+  font-size: 20px;
+}
+
+/* ページネーションのリンク文字（a） */
+.pagination a{
+  color: #818181;
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  padding: 10px;
+}
+
+/* ページネーションの文字にカーソルを載せた時 */
+.pagination a:hover{
+  width: 50px;
+  height: 50px;
+  border: 2px solid #43403b;
+  background-color: #d0593b;
+  color: #2e292b;
+  border-radius: 100%;
+  padding: 10px;
+}
+
+/* 現在のページの数字についての表記 */
+.current{
+  font-weight: bold;
+  color: #84b8eb;
+  padding: 10px;
+}
+
+.sideMenu {
+  background-color: #ba422b;
+  color: #fff;
+  a{
+    color: #fff;
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+.blackBtn {
+  background: #2e292b;
+  color: #fff;
+  border-radius: 90px;
+  &:hover {
+    color: #fff;
+  }
+}
+.grayBtn {
+  background: #f5f5f5;
+  color: #2e292b;
+  border-radius: 90px;
+  &:hover {
+    color: #2e292b;
+  }
+}
+.greenBtn {
+  background: #72c4a1;
+  color: #2e292b;
+  border-radius: 90px;
+  &:hover {
+    color: #2e292b;
+  }
+}
 .withdrawalBtn {
-  background: #dc143c;
+  background: #ba422b;
   border-radius: 90px;
   color: #fff;
   &:hover {
     color: #fff;
+  }
+}
+
+.card {
+  background-color: #f7f4ed;
+  .postDelete {
+    background-color: #ba422b;
+    color: #fff;
+    &:hover {
+      color: #2e292b;
+    }
+  }
+  .bookmarkBtn {
+    background-color: #72c4a1;
+    color: #fff;
+    &:hover {
+      color: #2e292b;
+    }
+  }
+}
+
+.postIndex {
+  transition-duration: .4s;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.plusBtn {
+  border: solid 2px #72c4a1;
+}
+
+@media (max-width: 767px) {
+  .sideMenu {
+    display: none;
+  }
+  .postBtn {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background: #72c4a1;
+  border: solid 3px #2e292b;
+  padding: 20px;
+  color: #2e292b;
+  border-radius: 50%;
   }
 }

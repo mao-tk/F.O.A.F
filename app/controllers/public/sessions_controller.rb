@@ -28,7 +28,14 @@ class Public::SessionsController < Devise::SessionsController
 
   def guest_sign_in
     user = User.guest
+    folder = Folder.create(user: user, name: "マイリスト")
     sign_in user
+    redirect_to root_path
+  end
+
+  def guest_sign_out
+    user = User.guest
+    user.destroy
     redirect_to root_path
   end
 

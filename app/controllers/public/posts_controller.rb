@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
     tag_list = params[:post][:tag_name].split(",")
     area_id = params[:post][:area_id] # 選択されたAreaのIDを取得
     @post.area_id = area_id # Postオブジェクトのarea_idを設定
-    if @post.save!
+    if @post.save
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
@@ -17,15 +17,10 @@ class Public::PostsController < ApplicationController
     end
   end
 
-
   def index
     if params[:search]
       if params[:search].start_with?("#")
         # タグ検索の場合
-        # @tag_name = params[:search].slice(1..-1)
-        # @tag = Tag.where("name LIKE ?", "%#{@tag_name}%").first
-        # @tags = Tag.where("name LIKE ?", "%#{@tag_name}%")
-        # @posts = @tag.posts.status_public.page(params[:page]).per(9) if @tag
         @tag_name = params[:search].slice(1..-1)
         @tags = Tag.where("name LIKE ?", "%#{@tag_name}%")
         tag_ids = @tags.pluck(:id)
@@ -34,7 +29,11 @@ class Public::PostsController < ApplicationController
         # エリア検索の場合
         @area_name = params[:search].slice(1..-1)
         @area = Area.where("name LIKE ?", "%#{@area_name}%").first
-        @posts = @area.posts.status_public.page(params[:page]).per(9) if @area
+        if @area
+          @posts = @area.posts.status_public.page(params[:page]).per(9)
+        else
+          @posts = Post.none.page(params[:page]).per(9)
+        end
       else
         # キーワード検索の場合
         @keyword = params[:search]
@@ -70,12 +69,20 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     tag_list = params[:post][:name].split(',')
+    area_id = params[:post][:area_id]
+    @post.area_id = area_id
     if @post.update(post_params)
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
       render :edit
     end
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to root_path
   end
 
   private

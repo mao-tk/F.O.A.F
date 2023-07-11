@@ -2,6 +2,8 @@
   <div class="card-body p-5">
     <h6 class="text-center">新規登録</h5>
 
+    <%= render "layouts/error", obj: @user %>
+
     <%= form_with model: @user, url: user_registration_path do |f| %>
 
       <!--プロフィール画像・プレビュー-->
@@ -33,7 +35,7 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "再度パスワードを入力してください", class: "form-control" %>
       </div>
       <div class="text-center">
-        <%= f.submit "新規登録", class: "btn signUpBtn " %>
+        <%= f.submit "新規登録", class: "btn blackBtn " %>
       </div>
     <% end %>
   </div>
