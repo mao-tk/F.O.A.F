@@ -1,99 +1,117 @@
-<header class="d-lg-none d-md-none">
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-      <div class="row w-100">
-        <div class="col-3">
-          <%= link_to "F.O.A.F", root_path, class: 'nav-link nav-brand text-light' %>
-        </div>
-        <div class="col-9">
-          <div class="row w-100 justify-content-end">
-            <button class="navbar-toggler" style="color:#000;" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-              <ul class="navbar-nav ml-5">
-                <% if admin_signed_in? %>
+<div class="container">
+  <div class="row">
+    <header class="header d-lg-none">
+      <div class="header__inner">
+        <h1 class="header__title header-title">
+          <% if admin_signed_in? %>
+            <%= link_to admin_root_path, class: "navbar-brand p-3" do %>
+              <%= image_tag "logo.png", size: "200x200", class: "logo" %>
+            <% end %>
+          <% else %>
+            <%= link_to root_path, class: "navbar-brand p-3" do %>
+              <%= image_tag "logo.png", size: "200x200", class: "logo" %>
+            <% end %>
+          <% end %>
+        </h1>
 
-                  <li>
-                    <%= link_to admin_root_path do %>
-                      <i class="fa-regular fa-user"></i> USER
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to admin_posts_path do %>
-                      <i class="fa-regular fa-newspaper"></i> POST
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to admin_areas_path do %>
-                      <i class="far fa-map"></i> Areas
-                    <% end %>
-                  </li>
+        <nav class="header__nav nav" id="js-nav">
+          <ul class="nav__items nav-items">
+                    <% if admin_signed_in? %>
 
-                  <li>
-                    <%= link_to destroy_admin_session_path, method: :delete, class: "btn btn-block blackBtn" do %>
-                      <i class="fas fa-sign-out-alt"></i> Log out
-                    <% end %>
-                  </li>
+                      <li>
+                        <%= link_to admin_root_path do %>
+                          <i class="fa-regular fa-user"></i> USER
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to admin_posts_path do %>
+                          <i class="fa-regular fa-newspaper"></i> POST
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to admin_areas_path do %>
+                          <i class="far fa-map"></i> Areas
+                        <% end %>
+                      </li>
 
-                <% else %>
+                      <li>
+                        <%= link_to destroy_admin_session_path, method: :delete, class: "btn btn-block blackBtn" do %>
+                          <i class="fas fa-sign-out-alt"></i> Log out
+                        <% end %>
+                      </li>
 
-                  <li>
-                    <%= link_to root_path do %>
-                      <i class="fas fa-home"></i> HOME
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to about_path do %>
-                      <i class="fas fa-question-circle"></i> GUIDE
-                    <% end %>
-                  </li>
-                  <% if user_signed_in? %>
-                    <li>
-                      <%= link_to user_path(current_user) do %>
-                        <i class="fas fa-id-card"></i> MY PAGE
-                      <% end %>
-                    </li>
-                  <% end %>
-
-                  <% if user_signed_in? %>
-                    <% if current_user.email != "guest@example.com" %>
-                    <li>
-                      <%= link_to destroy_user_session_path, method: :delete do %>
-                        <i class="fas fa-sign-out-alt"></i> Log out
-                      <% end %>
-                    </li>
                     <% else %>
-                    <li>
-                      <%= link_to users_guest_sign_out_path, method: :delete do %>
-                        <i class="fas fa-sign-out-alt"></i> Log out
-                      <% end %>
-                    </li>
-                    <% end %>
-                  <% else %>
-                    <li>
-                      <%= link_to new_user_session_path do %>
-                        <i class="fas fa-sign-in-alt"></i> Log in
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to new_user_registration_path do %>
-                        <i class="fas fa-user-plus"></i> 新規登録
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to users_guest_sign_in_path, method: :post do %>
-                        <i class="fas fa-sign-in-alt"></i> ゲストログイン
-                      <% end %>
-                    </li>
-                  <% end %>
 
-                <% end %>
-              </ul>
-            </div>
-          </div>
-        </div>
+                      <li>
+                        <%= link_to root_path do %>
+                          <i class="fas fa-home"></i> HOME
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to about_path do %>
+                          <i class="fas fa-question-circle"></i> GUIDE
+                        <% end %>
+                      </li>
+                      <% if user_signed_in? %>
+                        <li>
+                          <%= link_to user_path(current_user) do %>
+                            <i class="fas fa-id-card"></i> MY PAGE
+                          <% end %>
+                        </li>
+                      <% end %>
+
+                      <% if user_signed_in? %>
+                        <% if current_user.email != "guest@example.com" %>
+                        <li>
+                          <%= link_to destroy_user_session_path, method: :delete do %>
+                            <i class="fas fa-sign-out-alt"></i> Log out
+                          <% end %>
+                        </li>
+                        <% else %>
+                        <li>
+                          <%= link_to users_guest_sign_out_path, method: :delete do %>
+                            <i class="fas fa-sign-out-alt"></i> Log out
+                          <% end %>
+                        </li>
+                        <% end %>
+                      <% else %>
+                        <li>
+                          <%= link_to new_user_session_path do %>
+                            <i class="fas fa-sign-in-alt"></i> Log in
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to new_user_registration_path do %>
+                            <i class="fas fa-user-plus"></i> 新規登録
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to users_guest_sign_in_path, method: :post do %>
+                            <i class="fas fa-sign-in-alt"></i> ゲストログイン
+                          <% end %>
+                        </li>
+                      <% end %>
+
+                    <% end %>
+          </ul>
+        </nav>
+
+        <button class="header__hamburger hamburger" id="js-hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-    </div>
-  </nav>
-</header>
+    </header>
+  </div>
+</div>
+
+<script>
+  const ham = $('#js-hamburger');
+  const nav = $('#js-nav');
+  ham.on('click', function () { //ハンバーガーメニューをクリックしたら
+    ham.toggleClass('active'); // ハンバーガーメニューにactiveクラスを付け外し
+    nav.toggleClass('active'); // ナビゲーションメニューにactiveクラスを付け外し
+
+  });
+</script>
