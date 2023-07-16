@@ -11,7 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body data-turbolinks=false>
     <div class="container">
       <%= render 'layouts/flash' %>
       <%= render 'layouts/header' %>
@@ -20,6 +20,7 @@
           <%= render "layouts/sidemenu" %>
         </div>
         <div class="col-11 col-lg-7 offset-lg-1 mx-auto">
+          <div class="mt-5 mt-lg-0"></div>
           <% unless admin_signed_in? %>
             <div class="form-group mt-3">
               <%= form_with url: posts_path, method: :get, local: true, class: "" do |f| %>
